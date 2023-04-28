@@ -1,18 +1,24 @@
-import React from "react";
+import React from 'react';
 
-import chevron from "assets/images/chevronDownBlack.png";
+import chevron from 'assets/images/chevronDownBlack.png';
 
-import * as S from "./styled";
+import * as S from './styled';
 
 interface InputNumberProps {
-  className: string; 
+  className: string;
   label: string;
   placeholder: string;
   name: string;
   suffix: string;
 }
 
-const InputNumber: React.FC<InputNumberProps> = ({ className, label, placeholder, name, suffix }) => (
+const InputNumber: React.FC<InputNumberProps> = ({
+  className,
+  label,
+  placeholder,
+  name,
+  suffix,
+}) => (
   <S.InputNumberWrapper className={className}>
     {label && <S.Label>{label}</S.Label>}
 

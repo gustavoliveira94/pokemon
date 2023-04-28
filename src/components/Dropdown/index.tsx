@@ -1,15 +1,15 @@
-import React from "react";
+import React from 'react';
 
-import chevron from "assets/images/chevronDownBlack.png";
+import chevron from 'assets/images/chevronDownBlack.png';
 
-import * as S from "./styled";
+import * as S from './styled';
 
 interface DropdownPageProps {
   label: string;
   options: {
     text: string;
     value: string;
-  }[]
+  }[];
 }
 
 const DropdownPage: React.FC<DropdownPageProps> = ({ label, options }) => (
