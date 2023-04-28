@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const InputNumberWrapper = styled.div`
   display: flex;
@@ -41,7 +41,7 @@ export const Input = styled.input`
     font-weight: 400;
   }
 
-  &[type="number"] {
+  &[type='number'] {
     -moz-appearance: textfield;
   }
 

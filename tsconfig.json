@@ -22,7 +22,8 @@
     "baseUrl": "./src"
   },
   "include": [
-    "src"
+    "src",
+    ".eslintrc.js"
   ],
   "exclude": ["node_modules"]
 }
