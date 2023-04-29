@@ -5,7 +5,7 @@ import * as S from './styled';
 interface ButtonProps {
   text?: string;
   icon?: string;
-  onClick: () => void;
+  onClick?: () => void;
   onlyIcon?: boolean;
 }
 

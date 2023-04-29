@@ -13,9 +13,10 @@ export default createGlobalStyle`
     -ms-overflow-style: scrollbar;
   }
 
+  #root,
   html,
   body {
-    height: 100%;
+    height: 100vh;
   }
 
   body {
