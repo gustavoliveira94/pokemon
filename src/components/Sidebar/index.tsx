@@ -6,7 +6,7 @@ import iconPlus from 'assets/images/plus.png';
 
 import * as S from './styled';
 
-const Sidebar = () => (
+const Sidebar: React.FC = () => (
   <S.SideBarWrapper>
     <S.SideBarList>
       <S.SideBarItem>?</S.SideBarItem>
