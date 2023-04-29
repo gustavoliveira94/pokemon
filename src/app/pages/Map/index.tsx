@@ -10,7 +10,7 @@ const MapPage: React.FC = () => {
     <S.MapWrapper className="map">
       <Sidebar />
       <S.Playground>
-        <Person />
+        <Person statusBallon="searching" />
       </S.Playground>
     </S.MapWrapper>
   );
