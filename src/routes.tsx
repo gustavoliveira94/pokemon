@@ -1,8 +1,8 @@
 import React from 'react';
 import { Route, BrowserRouter, Routes as Switch } from 'react-router-dom';
 
-import MapPage from 'pages/Map';
-import HomePage from 'pages/Home';
+import MapPage from 'app/pages/Map';
+import HomePage from 'app/pages/Home';
 
 const Routes: React.FC = () => {
   return (

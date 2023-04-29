@@ -1,9 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import pokemonLogo from 'assets/images/pokemonLogo.png';
+import pokemonLogo from 'app/assets/images/pokemonLogo.png';
 
-import Button from 'components/Button';
+import Button from 'app/components/Button';
 
 import * as S from './styled';
 

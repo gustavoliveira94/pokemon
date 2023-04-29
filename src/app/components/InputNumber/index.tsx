@@ -1,6 +1,6 @@
 import React from 'react';
 
-import chevron from 'assets/images/chevronDownBlack.png';
+import chevron from 'app/assets/images/chevronDownBlack.png';
 
 import * as S from './styled';
 
