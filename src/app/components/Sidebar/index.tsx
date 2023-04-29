@@ -1,8 +1,8 @@
 import React from 'react';
 
-import Button from 'components/Button';
+import Button from 'app/components/Button';
 
-import iconPlus from 'assets/images/plus.png';
+import iconPlus from 'app/assets/images/plus.png';
 
 import * as S from './styled';
 
