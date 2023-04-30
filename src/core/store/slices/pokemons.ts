@@ -11,7 +11,7 @@ export interface PokemonsState {
 
 const initialState: PokemonsState = {
   pokemon: {} as IPokemonAdapter,
-  pokemons: [] as IPokemonAdapter[],
+  pokemons: ['', '', '', '', '', ''] as unknown as IPokemonAdapter[],
   loading: false,
 };
 
@@ -19,10 +19,21 @@ const pokemonsSlice = createSlice({
   name: 'pokemons',
   initialState,
   reducers: {
-    setPokemons: (state) => {
+    capturePokemon: (state) => {
+      let pokemons = [...state.pokemons];
+
+      const checkQuantitiesPokemons =
+        state.pokemons.filter((pokemon) => pokemon).length < 6;
+
+      if (checkQuantitiesPokemons) {
+        const mergePokemons = [...state.pokemons.slice(1), state.pokemon];
+
+        pokemons = mergePokemons;
+      }
+
       return {
         ...state,
-        pokemons: [...state.pokemons, state.pokemon],
+        pokemons: [...pokemons],
       };
     },
     setPokemon: (state, action: PayloadAction<IPokemonAdapter>) => {
@@ -44,7 +55,7 @@ const pokemonsSlice = createSlice({
   },
 });
 
-export const { setPokemons, setLoading, setPokemon } = pokemonsSlice.actions;
+export const { capturePokemon, setLoading, setPokemon } = pokemonsSlice.actions;
 
 export const pokemonsSelector = (state: RootState) => ({
   pokemons: state.pokemons.pokemons,
