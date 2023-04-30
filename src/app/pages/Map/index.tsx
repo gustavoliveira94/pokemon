@@ -1,19 +1,30 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 
 import Sidebar from 'app/components/Sidebar';
-import Person from 'app/features/Person';
+import { Person } from 'app/components/Person';
 import { Modal } from 'app/components/Modal';
+
+import { modalSelector } from 'core/store/slices/modal';
 
 import * as S from './styled';
 
 const MapPage: React.FC = () => {
+  const { name: modalName, open } = useSelector(modalSelector);
+
+  const modal = {
+    Capture: <Modal.Capture open={open} />,
+    Edit: <Modal.Edit open={open} />,
+    '': null,
+  };
+
   return (
     <S.MapWrapper className="map">
       <Sidebar />
       <S.Playground>
-        <Person statusBallon="searching" />
+        <Person.Search />
       </S.Playground>
-      <Modal.Capture />
+      {modal[modalName]}
     </S.MapWrapper>
   );
 };

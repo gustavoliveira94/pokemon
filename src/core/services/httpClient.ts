@@ -4,16 +4,23 @@ import { pokemonApi } from 'core/api/pokemonApi';
 
 const fetch = axios.create({ baseURL: pokemonApi });
 
-const httpClient = {
-  get: async (url: string, options?: AxiosRequestConfig) => {
+const httpClient = () => {
+  const get = async <Data = any>(
+    url: string,
+    options?: AxiosRequestConfig,
+  ): Promise<Data> => {
     try {
       const { data } = await fetch.get(url, options);
 
       return data;
-    } catch (e) {
+    } catch (e: any) {
       return e;
     }
-  },
+  };
+
+  return {
+    get,
+  };
 };
 
-export default httpClient;
+export default httpClient();
