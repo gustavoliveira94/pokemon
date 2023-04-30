@@ -1,10 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit';
 
-import pokemonSlice from './slices/pokemon';
+import pokemonsSlice from './slices/pokemons';
+import modalsSlice from './slices/modal';
 
 export const store = configureStore({
   reducer: {
-    pokemon: pokemonSlice,
+    pokemons: pokemonsSlice,
+    modal: modalsSlice,
   },
 });
 

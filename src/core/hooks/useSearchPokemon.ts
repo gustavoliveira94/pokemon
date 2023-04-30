@@ -1,31 +1,39 @@
-import { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
-import { getPokemon } from 'core/states/slices/pokemon';
+import {
+  pokemonSelector,
+  setPokemon,
+  setLoading,
+} from 'core/store/slices/pokemons';
+
+import { openModal } from 'core/store/slices/modal';
+import { pokemonAdapter } from 'contracts/adapters/pokemon';
 
 import httpClient from 'core/services/httpClient';
+import { IPokemon } from 'contracts/interfaces/pokemon';
 
 export const useSearchPokemon = () => {
   const dispatch = useDispatch();
-
-  const [loading, setLoading] = useState(false);
+  const { pokemon, loading } = useSelector(pokemonSelector);
 
   const searchPokemon = async () => {
     const randomPokemon = Math.floor(Math.random() * 807 + 1);
 
-    setLoading(true);
-    try {
-      const data = await httpClient.get(`/pokemon/${randomPokemon}`);
+    setLoading({ loading: true });
 
-      dispatch(getPokemon(data));
+    try {
+      const data = await httpClient.get<IPokemon>(`/pokemon/${randomPokemon}`);
+
+      dispatch(setPokemon(pokemonAdapter(data)));
+      dispatch(openModal({ open: true, name: 'Capture' }));
     } catch (e) {
-      setLoading(false);
-      return null;
+      dispatch(setLoading({ loading: false }));
     }
   };
 
   return {
     searchPokemon,
     loading,
+    pokemon,
   };
 };

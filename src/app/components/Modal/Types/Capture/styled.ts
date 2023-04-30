@@ -4,6 +4,7 @@ export const Wrapper = styled.div`
   position: relative;
   display: flex;
   flex-direction: column;
+  width: 100%;
 `;
 
 export const Name = styled.h3`
@@ -14,6 +15,7 @@ export const Name = styled.h3`
   text-align: center;
   color: #2e3a59;
   margin-bottom: 35px;
+  text-transform: uppercase;
 `;
 
 export const Type = styled.div`

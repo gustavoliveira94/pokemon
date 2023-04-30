@@ -1,3 +1,5 @@
+import { useEffect, useState } from 'react';
+
 import { Ballon } from 'app/components/Ballon';
 
 import personFront from 'app/assets/images/ashFront.png';
@@ -7,14 +9,13 @@ import personStop from 'app/assets/images/ashStop.png';
 
 import { useSearchPokemon } from 'core/hooks/useSearchPokemon';
 
-import { useEffect, useState } from 'react';
 import * as S from './styled';
 
 interface PersonProps {
-  statusBallon: 'search' | 'searching' | 'error';
+  ballon: JSX.Element;
 }
 
-const Person: React.FC<PersonProps> = ({ statusBallon }) => {
+const PersonComponent: React.FC<PersonProps> = ({ ballon }) => {
   const { searchPokemon, loading } = useSearchPokemon();
 
   const [walk, setWalk] = useState<'left' | 'right' | 'stop' | 'front'>(
@@ -33,12 +34,6 @@ const Person: React.FC<PersonProps> = ({ statusBallon }) => {
     }
   }, [loading]);
 
-  const ballon = {
-    search: <Ballon.Search />,
-    searching: <Ballon.Searching />,
-    error: <Ballon.Error />,
-  };
-
   const personMove = {
     front: <img src={personFront} alt="person" />,
     left: <img src={personLeftLeg} alt="person" />,
@@ -48,10 +43,14 @@ const Person: React.FC<PersonProps> = ({ statusBallon }) => {
 
   return (
     <S.Person onClick={() => searchPokemon()}>
-      {ballon[statusBallon]}
+      {ballon}
       {personMove[walk]}
     </S.Person>
   );
 };
 
-export default Person;
+export const Person = {
+  Search: () => <PersonComponent ballon={<Ballon.Search />} />,
+  Searching: () => <PersonComponent ballon={<Ballon.Searching />} />,
+  Error: () => <PersonComponent ballon={<Ballon.Error />} />,
+};

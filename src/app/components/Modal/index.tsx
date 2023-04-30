@@ -1,22 +1,26 @@
+import { useDispatch } from 'react-redux';
+
 import close from 'app/assets/images/close.png';
+import { closeModal } from 'core/store/slices/modal';
 import CaptureModal from './Types/Capture';
 
 import * as S from './styled';
 
 interface ModalProps {
   content: JSX.Element;
+  open: boolean;
 }
 
-const ModalDefault: React.FC<ModalProps> = ({ content }) => {
+const ModalComponent: React.FC<ModalProps> = ({ content, open }) => {
+  const dispatch = useDispatch();
+
   return (
-    <S.Wrapper>
+    <S.Wrapper open={open}>
       <S.Container>
-        <S.Close>
+        <S.Close onClick={() => dispatch(closeModal())}>
           <img src={close} alt="close-modal" />
         </S.Close>
-        <S.Header>
-          <S.Picture />
-        </S.Header>
+        <S.Header />
         <S.Content>{content}</S.Content>
       </S.Container>
     </S.Wrapper>
@@ -24,6 +28,10 @@ const ModalDefault: React.FC<ModalProps> = ({ content }) => {
 };
 
 export const Modal = {
-  Capture: () => <ModalDefault content={<CaptureModal />} />,
-  Edit: () => <ModalDefault content={<CaptureModal />} />,
+  Capture: ({ open }: Pick<ModalProps, 'open'>) => (
+    <ModalComponent open={open} content={<CaptureModal />} />
+  ),
+  Edit: ({ open }: Pick<ModalProps, 'open'>) => (
+    <ModalComponent open={open} content={<CaptureModal />} />
+  ),
 };

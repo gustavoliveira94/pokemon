@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 
-export const Wrapper = styled.div`
+export const Wrapper = styled.div<{ open: boolean }>`
+  visibility: ${({ open }) => (open ? 'visible' : 'hidden')};
+  opacity: ${({ open }) => (open ? 1 : 0)};
   position: fixed;
   top: 0;
   width: 100%;
@@ -42,17 +44,10 @@ export const Content = styled.div`
   margin-top: -30px;
   padding-top: 160px;
   padding: 160px 25px 0;
-`;
-
-export const Picture = styled.div`
-  position: absolute;
-  z-index: 2;
-  top: 30px;
-  width: 250px;
-  height: 250px;
-  border: 4px solid #00d68f;
-  border-radius: 100%;
-  background-color: #f7f9fc;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 `;
 
 export const Close = styled.button`
