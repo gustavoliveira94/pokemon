@@ -1,9 +1,13 @@
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+
+import { getPokemon } from 'core/states/slices/pokemon';
 
 import httpClient from 'core/services/httpClient';
 
 export const useSearchPokemon = () => {
-  const [pokemon, setPokemon] = useState({} as any);
+  const dispatch = useDispatch();
+
   const [loading, setLoading] = useState(false);
 
   const searchPokemon = async () => {
@@ -13,8 +17,7 @@ export const useSearchPokemon = () => {
     try {
       const data = await httpClient.get(`/pokemon/${randomPokemon}`);
 
-      setLoading(true);
-      return setPokemon(data);
+      dispatch(getPokemon(data));
     } catch (e) {
       setLoading(false);
       return null;
@@ -23,7 +26,6 @@ export const useSearchPokemon = () => {
 
   return {
     searchPokemon,
-    pokemon,
     loading,
   };
 };

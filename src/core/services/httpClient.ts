@@ -1,11 +1,13 @@
-import axios from 'axios';
+import axios, { AxiosRequestConfig } from 'axios';
 
-const fetch = axios.create({ baseURL: 'https://pokeapi.co/api/v2/' });
+import { pokemonApi } from 'core/api/pokemonApi';
+
+const fetch = axios.create({ baseURL: pokemonApi });
 
 const httpClient = {
-  get: async (url: string) => {
+  get: async (url: string, options?: AxiosRequestConfig) => {
     try {
-      const { data } = await fetch(url);
+      const { data } = await fetch.get(url, options);
 
       return data;
     } catch (e) {
