@@ -7,10 +7,22 @@ import { Modal } from 'app/components/Modal';
 
 import { modalSelector } from 'core/store/slices/modal';
 
+import { pokemonsSelector } from 'core/store/slices/pokemons';
 import * as S from './styled';
 
 const MapPage: React.FC = () => {
   const { name: modalName, open } = useSelector(modalSelector);
+  const { pokemons } = useSelector(pokemonsSelector);
+
+  const statusPerson =
+    pokemons.filter((pokemon) => pokemon).length < 6 ? 'Search' : 'Error';
+
+  const person = {
+    Search: <Person.Search />,
+    Searching: <Person.Searching />,
+    Error: <Person.Error />,
+    '': null,
+  };
 
   const modal = {
     Capture: <Modal.Capture open={open} />,
@@ -21,9 +33,7 @@ const MapPage: React.FC = () => {
   return (
     <S.MapWrapper className="map">
       <Sidebar />
-      <S.Playground>
-        <Person.Search />
-      </S.Playground>
+      <S.Playground>{person[statusPerson]}</S.Playground>
       {modal[modalName]}
     </S.MapWrapper>
   );

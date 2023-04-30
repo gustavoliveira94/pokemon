@@ -12,6 +12,10 @@ export const SideBarWrapper = styled.aside`
 export const SideBarList = styled.ul`
   display: flex;
   flex-direction: column;
+
+  img {
+    width: 50px;
+  }
 `;
 
 export const SideBarItem = styled.li`
