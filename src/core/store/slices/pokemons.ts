@@ -52,10 +52,62 @@ const pokemonsSlice = createSlice({
         loading: action.payload.loading,
       };
     },
+    dropPokemon: (state, action: PayloadAction<{ id: number }>) => {
+      const drop = state.pokemons.filter(
+        (pokemon) => pokemon.id !== action.payload.id,
+      );
+
+      return {
+        ...state,
+        pokemons: [...drop, '' as unknown as IPokemonAdapter],
+      };
+    },
+    selectPokemon: (state, action: PayloadAction<{ id: number }>) => {
+      const selectPokemon = state.pokemons.filter(
+        (pokemon) => pokemon.id === action.payload.id,
+      );
+
+      return {
+        ...state,
+        pokemon: selectPokemon[0],
+      };
+    },
+    editPokemon: (
+      state,
+      action: PayloadAction<{ id: number; name: string }>,
+    ) => {
+      const mergePokemons = state.pokemons.map((pokemon) => {
+        if (pokemon.id === action.payload.id) {
+          return {
+            ...pokemon,
+            name: action.payload.name,
+          };
+        }
+
+        return pokemon;
+      });
+
+      const selectPokemon = state.pokemons.filter(
+        (pokemon) => pokemon.id === action.payload.id,
+      );
+
+      return {
+        ...state,
+        pokemons: mergePokemons,
+        pokemon: selectPokemon[0],
+      };
+    },
   },
 });
 
-export const { capturePokemon, setLoading, setPokemon } = pokemonsSlice.actions;
+export const {
+  capturePokemon,
+  setLoading,
+  setPokemon,
+  dropPokemon,
+  selectPokemon,
+  editPokemon,
+} = pokemonsSlice.actions;
 
 export const pokemonsSelector = (state: RootState) => ({
   pokemons: state.pokemons.pokemons,

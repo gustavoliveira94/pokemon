@@ -4,6 +4,7 @@ import {
   pokemonSelector,
   setPokemon,
   setLoading,
+  selectPokemon as pokemonSelect,
 } from 'core/store/slices/pokemons';
 
 import { openModal } from 'core/store/slices/modal';
@@ -15,6 +16,10 @@ import { IPokemon } from 'contracts/interfaces/pokemon';
 export const useSearchPokemon = () => {
   const dispatch = useDispatch();
   const { pokemon, loading } = useSelector(pokemonSelector);
+
+  const selectPokemon = ({ id }: { id: number }) => {
+    dispatch(pokemonSelect({ id }));
+  };
 
   const searchPokemon = async () => {
     const randomPokemon = Math.floor(Math.random() * 807 + 1);
@@ -35,5 +40,6 @@ export const useSearchPokemon = () => {
     searchPokemon,
     loading,
     pokemon,
+    selectPokemon,
   };
 };
