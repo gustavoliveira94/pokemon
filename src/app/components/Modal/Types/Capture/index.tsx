@@ -3,8 +3,10 @@ import pokeball from 'app/assets/images/pokeball.png';
 import { useSearchPokemon } from 'core/hooks/useSearchPokemon';
 import { useCapturePokemon } from 'core/hooks/useCapturePokemon';
 
+import FieldType from '../../common/FieldType';
+import FieldAbilities from '../../common/FieldAbilities';
+
 import Stats from '../../common/Stats';
-import Divide from '../../common/Divide';
 import Picture from '../../common/Picture';
 
 import * as S from './styled';
@@ -23,24 +25,8 @@ const CaptureModal: React.FC = () => {
           height={pokemon.height}
           weight={pokemon.weight}
         />
-        <Divide
-          title="TIPO"
-          content={
-            <S.Type>
-              {pokemon.types.map((type) => {
-                return <p key={type}>{type}</p>;
-              })}
-            </S.Type>
-          }
-        />
-        <Divide
-          title="HABILIDADES"
-          content={
-            <S.Abilities>
-              <p>{pokemon.abilities}</p>
-            </S.Abilities>
-          }
-        />
+        <FieldType types={pokemon.types} />
+        <FieldAbilities abilities={pokemon.abilities} />
         <S.Pokeball>
           <img src={pokeball} alt="pokeball" onClick={() => capturePokemon()} />
         </S.Pokeball>

@@ -1,6 +1,7 @@
 import { IPokemon } from 'contracts/interfaces/pokemon';
 
 export interface IPokemonAdapter {
+  id: number;
   name: string;
   height: number;
   weight: number;
@@ -16,6 +17,7 @@ export interface IPokemonAdapter {
 
 export const pokemonAdapter = (data: IPokemon): IPokemonAdapter => {
   return {
+    id: Math.random(),
     name: data.name,
     height: data.height,
     weight: data.weight,
