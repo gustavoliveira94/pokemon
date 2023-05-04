@@ -6,7 +6,7 @@ import { useCapturePokemon } from 'core/hooks/useCapturePokemon';
 import FieldType from '../../common/FieldType';
 import FieldAbilities from '../../common/FieldAbilities';
 
-import Stats from '../../common/Stats';
+import Infos from '../../common/Infos';
 import Picture from '../../common/Picture';
 
 import * as S from './styled';
@@ -20,7 +20,7 @@ const CaptureModal: React.FC = () => {
       <Picture image={pokemon.image} />
       <S.Wrapper>
         <S.Name>{pokemon.name}</S.Name>
-        <Stats
+        <Infos
           hp={pokemon.hp || '-'}
           height={pokemon.height}
           weight={pokemon.weight}

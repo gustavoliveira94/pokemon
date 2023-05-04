@@ -15,7 +15,7 @@ import FieldType from '../../common/FieldType';
 import FieldAbilities from '../../common/FieldAbilities';
 import FieldStats from '../../common/FieldStats';
 
-import Stats from '../../common/Stats';
+import Infos from '../../common/Infos';
 import Picture from '../../common/Picture';
 
 import * as S from './styled';
@@ -61,7 +61,7 @@ const EditModal: React.FC = () => {
             />
           </S.Name>
         )}
-        <Stats
+        <Infos
           hp={pokemon.hp || '-'}
           height={pokemon.height}
           weight={pokemon.weight}

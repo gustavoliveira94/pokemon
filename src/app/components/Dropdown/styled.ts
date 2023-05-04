@@ -5,8 +5,7 @@ export const DropdownWrapper = styled.div`
   display: flex;
   flex-direction: column;
   margin-bottom: 1.6rem;
-
-  padding: 20px;
+  width: 100%;
 `;
 
 export const Label = styled.label`
@@ -20,6 +19,25 @@ export const Label = styled.label`
 
 export const DropdownContent = styled.div`
   position: relative;
+`;
+
+export const Item = styled.p`
+  background-color: #c5cee0;
+  padding: 4px 6px;
+  font-weight: 600;
+  font-size: 15px;
+  color: #2e3a59;
+  border-radius: 15px;
+  height: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 10px;
+  text-transform: lowercase;
+
+  :not(:last-child) {
+    margin-right: 10px;
+  }
 `;
 
 export const Select = styled.select`
@@ -57,4 +75,17 @@ export const DropdownIcon = styled.img`
   width: 2.5rem;
   height: auto;
   pointer-events: none;
+`;
+
+export const Items = styled.div`
+  position: absolute;
+  z-index: 10;
+  top: 50%;
+  padding: 0 12px;
+  transform: translateY(-50%);
+  width: 2.5rem;
+  height: auto;
+  pointer-events: none;
+  display: flex;
+  align-items: center;
 `;
