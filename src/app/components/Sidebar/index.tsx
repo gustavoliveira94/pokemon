@@ -25,21 +25,25 @@ const Sidebar: React.FC = () => {
             '?'
           );
 
-          return (
-            <S.SideBarItem
-              onClick={() => {
+          const click = pokemon.name
+            ? () => {
                 dispatch(openModal({ open: true, name: 'Edit' }));
                 selectPokemon({ id: pokemon.id });
-              }}
-              key={Math.random()}
-            >
+              }
+            : undefined;
+
+          return (
+            <S.SideBarItem onClick={click} key={Math.random()}>
               {image}
             </S.SideBarItem>
           );
         })}
       </S.SideBarList>
 
-      <Button onClick={() => ''} icon={iconPlus} />
+      <Button
+        onClick={() => dispatch(openModal({ open: true, name: 'Create' }))}
+        icon={iconPlus}
+      />
     </S.SideBarWrapper>
   );
 };

@@ -2,8 +2,10 @@ import { useDispatch } from 'react-redux';
 
 import close from 'app/assets/images/close.png';
 import { closeModal } from 'core/store/slices/modal';
+
 import CaptureModal from './Types/Capture';
 import EditModal from './Types/Edit';
+import CreateModal from './Types/Create';
 
 import * as S from './styled';
 
@@ -34,5 +36,8 @@ export const Modal = {
   ),
   Edit: ({ open }: Pick<ModalProps, 'open'>) => (
     <ModalComponent open={open} content={<EditModal />} />
+  ),
+  Create: ({ open }: Pick<ModalProps, 'open'>) => (
+    <ModalComponent open={open} content={<CreateModal />} />
   ),
 };

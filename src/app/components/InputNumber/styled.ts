@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const InputNumberWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  margin-bottom: 1.6rem;
+  width: 100%;
 `;
 
 export const Label = styled.label`
@@ -19,13 +19,20 @@ export const InputContent = styled.div`
   position: relative;
 `;
 
-export const Input = styled.input`
+export const Error = styled.span`
+  font-weight: 600;
+  font-size: 15px;
+  line-height: 24px;
+  color: #ff3d71;
+`;
+
+export const Input = styled.input<{ error: boolean }>`
   width: 100%;
   font-weight: 700;
   font-size: 1.6rem;
   padding: 1.2rem 0 1.2rem 0.8rem;
   background: #ffffff;
-  border: 2px solid #e4e9f2;
+  border: ${({ error }) => (error ? '2px solid #FF3D71' : '2px solid #e4e9f2')};
   border-radius: 3px;
   overflow: hidden;
   display: flex;

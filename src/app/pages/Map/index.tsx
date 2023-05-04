@@ -27,6 +27,7 @@ const MapPage: React.FC = () => {
   const modal = {
     Capture: <Modal.Capture open={open} />,
     Edit: <Modal.Edit open={open} />,
+    Create: <Modal.Create open={open} />,
     '': null,
   };
 

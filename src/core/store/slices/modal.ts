@@ -3,7 +3,7 @@ import { RootState } from '..';
 
 export interface ModalState {
   open: boolean;
-  name: 'Capture' | 'Edit' | '';
+  name: 'Capture' | 'Edit' | 'Create' | '';
 }
 
 const initialState: ModalState = {

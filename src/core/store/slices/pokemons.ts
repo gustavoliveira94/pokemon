@@ -97,6 +97,23 @@ const pokemonsSlice = createSlice({
         pokemon: selectPokemon[0],
       };
     },
+    createPokemon: (state, action: PayloadAction<IPokemonAdapter>) => {
+      let pokemons = [...state.pokemons];
+
+      const checkQuantitiesPokemons =
+        state.pokemons.filter((pokemon) => pokemon).length < 6;
+
+      if (checkQuantitiesPokemons) {
+        const mergePokemons = [...state.pokemons.slice(1), action.payload];
+
+        pokemons = mergePokemons;
+      }
+
+      return {
+        ...state,
+        pokemons,
+      };
+    },
   },
 });
 
@@ -107,6 +124,7 @@ export const {
   dropPokemon,
   selectPokemon,
   editPokemon,
+  createPokemon,
 } = pokemonsSlice.actions;
 
 export const pokemonsSelector = (state: RootState) => ({
