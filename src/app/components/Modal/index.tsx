@@ -1,8 +1,6 @@
-import { useDispatch } from 'react-redux';
-
 import close from 'app/assets/images/close.png';
-import { closeModal } from 'core/store/slices/modal';
 
+import { useModal } from 'core/hooks/useModal';
 import CaptureModal from './Types/Capture';
 import EditModal from './Types/Edit';
 import CreateModal from './Types/Create';
@@ -15,12 +13,12 @@ interface ModalProps {
 }
 
 const ModalComponent: React.FC<ModalProps> = ({ content, open }) => {
-  const dispatch = useDispatch();
+  const { closeModal } = useModal();
 
   return (
     <S.Wrapper open={open}>
       <S.Container>
-        <S.Close onClick={() => dispatch(closeModal())}>
+        <S.Close onClick={() => closeModal()}>
           <img src={close} alt="close-modal" />
         </S.Close>
         <S.Header />

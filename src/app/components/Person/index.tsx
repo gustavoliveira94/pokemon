@@ -38,7 +38,9 @@ const PersonComponent: React.FC<PersonProps> = ({ ballon }) => {
   }, [loading]);
 
   const handleSearchPokemon = () => {
-    return pokemons.length < 6 ? searchPokemon() : null;
+    return pokemons.filter((pokemon) => pokemon).length < 6
+      ? searchPokemon()
+      : null;
   };
 
   const personMove = {

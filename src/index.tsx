@@ -4,6 +4,8 @@ import { Provider } from 'react-redux';
 
 import { store } from 'core/store';
 
+import ModalProvider from 'core/providers/ModalProvider';
+
 import App from './App';
 
 const root = ReactDOM.createRoot(
@@ -12,7 +14,9 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <Provider store={store}>
-      <App />
+      <ModalProvider>
+        <App />
+      </ModalProvider>
     </Provider>
   </React.StrictMode>,
 );

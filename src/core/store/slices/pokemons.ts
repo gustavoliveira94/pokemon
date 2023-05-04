@@ -58,9 +58,11 @@ const pokemonsSlice = createSlice({
         (pokemon) => pokemon.id !== action.payload.id,
       );
 
+      drop.unshift('' as unknown as IPokemonAdapter);
+
       return {
         ...state,
-        pokemons: [...drop, '' as unknown as IPokemonAdapter],
+        pokemons: [...drop],
       };
     },
     selectPokemon: (state, action: PayloadAction<{ id: number }>) => {
