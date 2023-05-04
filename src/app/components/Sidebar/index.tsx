@@ -1,19 +1,19 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
 
 import Button from 'app/components/Button';
 import { useSearchPokemons } from 'core/hooks/useSearchPokemons';
 import { useSearchPokemon } from 'core/hooks/useSearchPokemon';
-import { openModal } from 'core/store/slices/modal';
 
 import iconPlus from 'app/assets/images/plus.png';
+
+import { useModal } from 'core/hooks/useModal';
 
 import * as S from './styled';
 
 const Sidebar: React.FC = () => {
   const { pokemons } = useSearchPokemons();
   const { selectPokemon } = useSearchPokemon();
-  const dispatch = useDispatch();
+  const { openModal } = useModal();
 
   return (
     <S.SideBarWrapper>
@@ -27,7 +27,7 @@ const Sidebar: React.FC = () => {
 
           const click = pokemon.name
             ? () => {
-                dispatch(openModal({ open: true, name: 'Edit' }));
+                openModal('Edit');
                 selectPokemon({ id: pokemon.id });
               }
             : undefined;
@@ -40,10 +40,7 @@ const Sidebar: React.FC = () => {
         })}
       </S.SideBarList>
 
-      <Button
-        onClick={() => dispatch(openModal({ open: true, name: 'Create' }))}
-        icon={iconPlus}
-      />
+      <Button onClick={() => openModal('Create')} icon={iconPlus} />
     </S.SideBarWrapper>
   );
 };
