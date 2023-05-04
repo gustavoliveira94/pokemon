@@ -34,6 +34,7 @@ const pokemonsSlice = createSlice({
       return {
         ...state,
         pokemons: [...pokemons],
+        loading: false,
       };
     },
     setPokemon: (state, action: PayloadAction<IPokemonAdapter>) => {

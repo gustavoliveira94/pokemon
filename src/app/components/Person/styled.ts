@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const Person = styled.div`
+export const Person = styled.div<{ loading: boolean }>`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -8,8 +8,9 @@ export const Person = styled.div`
   cursor: pointer;
 
   #ballon {
-    visibility: hidden;
-    opacity: 0;
+    visibility: ${({ loading }) => (loading ? 'visible' : 'hidden')};
+    opacity: ${({ loading }) => (loading ? '1' : '0')};
+    top: -70px;
     position: absolute;
   }
 

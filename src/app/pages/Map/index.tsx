@@ -7,15 +7,21 @@ import { Modal } from 'app/components/Modal';
 
 import { modalSelector } from 'core/store/slices/modal';
 
-import { pokemonsSelector } from 'core/store/slices/pokemons';
+import { pokemonSelector, pokemonsSelector } from 'core/store/slices/pokemons';
 import * as S from './styled';
 
 const MapPage: React.FC = () => {
   const { name: modalName, open } = useSelector(modalSelector);
   const { pokemons } = useSelector(pokemonsSelector);
+  const { loading } = useSelector(pokemonSelector);
 
   const statusPerson =
-    pokemons.filter((pokemon) => pokemon).length < 6 ? 'Search' : 'Error';
+    // eslint-disable-next-line no-nested-ternary
+    loading
+      ? 'Searching'
+      : pokemons.filter((pokemon) => pokemon).length < 6
+      ? 'Search'
+      : 'Error';
 
   const person = {
     Search: <Person.Search />,
