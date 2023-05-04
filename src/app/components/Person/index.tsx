@@ -8,6 +8,7 @@ import personRighttLeg from 'app/assets/images/ashRightLeg.png';
 import personStop from 'app/assets/images/ashStop.png';
 
 import { useSearchPokemon } from 'core/hooks/useSearchPokemon';
+import { useSearchPokemons } from 'core/hooks/useSearchPokemons';
 
 import * as S from './styled';
 
@@ -17,22 +18,28 @@ interface PersonProps {
 
 const PersonComponent: React.FC<PersonProps> = ({ ballon }) => {
   const { searchPokemon, loading } = useSearchPokemon();
+  const { pokemons } = useSearchPokemons();
 
   const [walk, setWalk] = useState<'left' | 'right' | 'stop' | 'front'>(
     'front',
   );
 
-  const personWalking = () => {
-    setTimeout(() => setWalk('left'), 200);
-    setTimeout(() => setWalk('right'), 400);
-    setTimeout(() => setWalk('stop'), 600);
-  };
-
   useEffect(() => {
-    if (loading) {
-      personWalking();
-    }
+    const left = loading ? setInterval(() => setWalk('left'), 200) : 0;
+    const right = loading ? setInterval(() => setWalk('right'), 400) : 0;
+    const stop = loading ? setInterval(() => setWalk('stop'), 600) : 0;
+
+    return () => {
+      clearInterval(left);
+      clearInterval(right);
+      clearInterval(stop);
+      setWalk('front');
+    };
   }, [loading]);
+
+  const handleSearchPokemon = () => {
+    return pokemons.length < 6 ? searchPokemon() : null;
+  };
 
   const personMove = {
     front: <img src={personFront} alt="person" />,
@@ -42,7 +49,7 @@ const PersonComponent: React.FC<PersonProps> = ({ ballon }) => {
   };
 
   return (
-    <S.Person onClick={() => searchPokemon()}>
+    <S.Person loading={loading} onClick={() => handleSearchPokemon()}>
       {ballon}
       {personMove[walk]}
     </S.Person>

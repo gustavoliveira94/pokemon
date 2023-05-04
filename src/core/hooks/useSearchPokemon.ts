@@ -24,16 +24,20 @@ export const useSearchPokemon = () => {
   const searchPokemon = async () => {
     const randomPokemon = Math.floor(Math.random() * 807 + 1);
 
-    setLoading({ loading: true });
+    dispatch(setLoading({ loading: true }));
 
-    try {
-      const data = await httpClient.get<IPokemon>(`/pokemon/${randomPokemon}`);
+    setTimeout(async () => {
+      try {
+        const data = await httpClient.get<IPokemon>(
+          `/pokemon/${randomPokemon}`,
+        );
 
-      dispatch(setPokemon(pokemonAdapter(data)));
-      dispatch(openModal({ open: true, name: 'Capture' }));
-    } catch (e) {
-      dispatch(setLoading({ loading: false }));
-    }
+        dispatch(setPokemon(pokemonAdapter(data)));
+        dispatch(openModal({ open: true, name: 'Capture' }));
+      } catch (e) {
+        dispatch(setLoading({ loading: false }));
+      }
+    }, 2000);
   };
 
   return {
