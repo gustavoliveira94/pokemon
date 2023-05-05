@@ -10,7 +10,7 @@ const ModalProvider: React.FC<ModalProviderProps> = ({ children }) => {
 
   const modal = {
     Capture: <Modal.Capture open={open} />,
-    Edit: <Modal.Edit open={open} />,
+    Status: <Modal.Status open={open} />,
     Create: <Modal.Create open={open} />,
     '': null,
   };

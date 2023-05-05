@@ -1,21 +1,21 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { RootState } from '..';
 
-export interface ModalState {
+export interface IModalState {
   open: boolean;
-  name: 'Capture' | 'Edit' | 'Create' | '';
+  name: 'Capture' | 'Status' | 'Create' | '';
 }
 
-const initialState: ModalState = {
+const initialState: IModalState = {
   open: false,
-  name: '' as ModalState['name'],
+  name: '' as IModalState['name'],
 };
 
 const modalSlice = createSlice({
   name: 'modal',
   initialState,
   reducers: {
-    openModal: (state, action: PayloadAction<ModalState>) => {
+    openModal: (state, action: PayloadAction<IModalState>) => {
       return {
         ...state,
         open: action.payload.open,
@@ -26,7 +26,7 @@ const modalSlice = createSlice({
       return {
         ...state,
         open: false,
-        name: '' as ModalState['name'],
+        name: '' as IModalState['name'],
       };
     },
   },

@@ -62,7 +62,7 @@ const CreateModal: React.FC = () => {
         <form onSubmit={formik.handleSubmit}>
           <S.Picture>
             <Picture
-              error={formik.touched.image && Boolean(formik.errors.name)}
+              error={formik.touched.image && Boolean(formik.errors.image)}
               image={formik.values.image}
               content={
                 <S.AddPicture>
