@@ -33,7 +33,11 @@ const Sidebar: React.FC = () => {
             : undefined;
 
           return (
-            <S.SideBarItem onClick={click} key={Math.random()}>
+            <S.SideBarItem
+              data-testid="sidebar-item"
+              onClick={click}
+              key={Math.random()}
+            >
               {image}
             </S.SideBarItem>
           );

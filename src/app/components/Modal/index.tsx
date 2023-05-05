@@ -16,7 +16,7 @@ const ModalComponent: React.FC<ModalProps> = ({ content, open }) => {
   const { closeModal } = useModal();
 
   return (
-    <S.Wrapper open={open}>
+    <S.Wrapper open={open} data-testid="modal">
       <S.Container>
         <S.Close onClick={() => closeModal()}>
           <img src={close} alt="close-modal" />

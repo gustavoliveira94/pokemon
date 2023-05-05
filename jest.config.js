@@ -9,18 +9,20 @@ module.exports = {
       'styles.ts',
       'styled.ts',
     ],
+    collectCoverageFrom: [
+      'src/app/components/**/*.{ts,tsx}',
+      'src/app/pages/**/*.{ts,tsx}',
+    ],
     transform: {
       '^.+\\.ts?$': 'ts-jest',
       "^.+\\.jsx?$": "babel-jest",
       ".+\\.(css|styl|less|sass|scss|png|jpg|ttf|woff|woff2)$": "<rootDir>/src/config/tests/fileMock.js",
     },
-    transformIgnorePatterns: [
-      "/node_modules/"
-    ],
     moduleNameMapper: {
       '^root(.*)$': '<rootDir>/src$1',
       '^app(.*)$': '<rootDir>/src/app$1',
       '^core(.*)$': '<rootDir>/src/core$1',
       '^config(.*)$': '<rootDir>/src/config$1',       
+      '^contracts(.*)$': '<rootDir>/src/contracts$1',       
     },
   }
