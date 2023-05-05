@@ -2,7 +2,7 @@ import close from 'app/assets/images/close.png';
 
 import { useModal } from 'core/hooks/useModal';
 import CaptureModal from './Types/Capture';
-import EditModal from './Types/Edit';
+import StatusModal from './Types/Status';
 import CreateModal from './Types/Create';
 
 import * as S from './styled';
@@ -32,8 +32,8 @@ export const Modal = {
   Capture: ({ open }: Pick<ModalProps, 'open'>) => (
     <ModalComponent open={open} content={<CaptureModal />} />
   ),
-  Edit: ({ open }: Pick<ModalProps, 'open'>) => (
-    <ModalComponent open={open} content={<EditModal />} />
+  Status: ({ open }: Pick<ModalProps, 'open'>) => (
+    <ModalComponent open={open} content={<StatusModal />} />
   ),
   Create: ({ open }: Pick<ModalProps, 'open'>) => (
     <ModalComponent open={open} content={<CreateModal />} />

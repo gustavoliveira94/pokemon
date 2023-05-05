@@ -20,7 +20,7 @@ import Picture from '../../common/Picture';
 
 import * as S from './styled';
 
-const EditModal: React.FC = () => {
+const StatusModal: React.FC = () => {
   const { pokemon } = useSearchPokemon();
   const { dropPokemon } = useDropPokemon();
   const { editPokemon } = useEditPokemon();
@@ -81,4 +81,4 @@ const EditModal: React.FC = () => {
   );
 };
 
-export default EditModal;
+export default StatusModal;

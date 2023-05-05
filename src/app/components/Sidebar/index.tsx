@@ -27,7 +27,7 @@ const Sidebar: React.FC = () => {
 
           const click = pokemon.name
             ? () => {
-                openModal('Edit');
+                openModal('Status');
                 selectPokemon({ id: pokemon.id });
               }
             : undefined;

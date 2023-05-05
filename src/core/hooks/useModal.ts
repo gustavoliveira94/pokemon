@@ -1,6 +1,7 @@
 import { useSelector, useDispatch } from 'react-redux';
 
 import {
+  IModalState,
   modalSelector,
   openModal as modalOpen,
   closeModal as modalClose,
@@ -10,7 +11,7 @@ export const useModal = () => {
   const dispatch = useDispatch();
   const { name: modalName, open } = useSelector(modalSelector);
 
-  const openModal = (name: 'Edit' | 'Create' | 'Capture') => {
+  const openModal = (name: IModalState['name']) => {
     dispatch(modalOpen({ open: true, name }));
   };
 
