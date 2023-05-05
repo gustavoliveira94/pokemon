@@ -5,15 +5,15 @@ import tooltipSearching from 'app/assets/images/searchingTooltip.png';
 import tooltipSearch from 'app/assets/images/searchTooltip.png';
 
 interface BallonComponentProps {
-  type: string;
+  tooltip: string;
 }
 
-const BallonComponent: React.FC<BallonComponentProps> = ({ type }) => {
-  return <img id="ballon" src={type} alt="ballon" />;
+const BallonComponent: React.FC<BallonComponentProps> = ({ tooltip }) => {
+  return <img id="ballon" src={tooltip} alt="ballon" data-testid="ballon" />;
 };
 
 export const Ballon = {
-  Search: () => <BallonComponent type={tooltipSearch} />,
-  Searching: () => <BallonComponent type={tooltipSearching} />,
-  Error: () => <BallonComponent type={tooltipError} />,
+  Search: () => <BallonComponent tooltip={tooltipSearch} />,
+  Searching: () => <BallonComponent tooltip={tooltipSearching} />,
+  Error: () => <BallonComponent tooltip={tooltipError} />,
 };

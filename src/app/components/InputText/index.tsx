@@ -5,12 +5,12 @@ import * as S from './styled';
 interface InputTextProps {
   className?: string;
   label?: string;
-  type: string;
-  placeholder: string;
-  name: string;
+  type?: string;
+  placeholder?: string;
+  name?: string;
   value?: string;
   error?: string;
-  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 const InputText: React.FC<InputTextProps> = ({
@@ -27,6 +27,7 @@ const InputText: React.FC<InputTextProps> = ({
     {label && <S.Label>{label}</S.Label>}
 
     <S.Input
+      data-testid="input"
       error={Boolean(error)}
       id={name}
       type={type}

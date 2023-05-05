@@ -4,7 +4,7 @@ import * as S from './styled';
 
 interface DropdownPageProps {
   label?: string;
-  name: string;
+  name?: string;
   options: {
     text: string;
     value: string;
