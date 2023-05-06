@@ -21,13 +21,16 @@ const FieldType: React.FC<FieldTypeProps> = ({ types }) => {
             const color =
               typesColors[
                 typesPokemons[
-                  type as keyof typeof typesPokemons
+                  type?.toLowerCase() as keyof typeof typesPokemons
                 ]?.toLowerCase() as keyof typeof typesColors
               ];
 
+            const name =
+              typesPokemons[type?.toLowerCase() as keyof typeof typesPokemons];
+
             return (
               <S.Type color={color} key={type}>
-                {type}
+                {name}
               </S.Type>
             );
           })}

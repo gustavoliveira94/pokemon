@@ -1,6 +1,6 @@
 export const typesColors = {
   normal: '#C4C0B4',
-  inseto: '##87950C',
+  inseto: '#87950C',
   sombrio: '#413831',
   dragão: '#7361D1',
   elétrico: '#E08D00',

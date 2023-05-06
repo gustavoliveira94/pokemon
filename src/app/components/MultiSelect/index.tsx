@@ -22,6 +22,7 @@ interface MultiSelect {
   }[];
   onChange?: (e: SelectChangeEvent<string[]>) => void;
   error?: string;
+  translate?: { [key: string]: string };
 }
 
 const MultiSelect: React.FC<MultiSelect> = ({
@@ -30,6 +31,7 @@ const MultiSelect: React.FC<MultiSelect> = ({
   limitSelected,
   error,
   placeholder,
+  translate,
 }) => {
   const [selected, setSelected] = useState<string[]>([]);
 
@@ -49,13 +51,15 @@ const MultiSelect: React.FC<MultiSelect> = ({
         multiple
         value={selected}
         onChange={handleChange}
-        renderValue={(select) => (
-          <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
-            {select.map((value) => (
-              <Chip key={value} label={value} />
-            ))}
-          </Box>
-        )}
+        renderValue={(select) => {
+          return (
+            <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
+              {select.map((value) => (
+                <Chip key={value} label={translate?.[value] || value} />
+              ))}
+            </Box>
+          );
+        }}
         input={<S.OutlinedInput id="select-multiple-chip" />}
       >
         {options.map((option) => (
@@ -75,7 +79,7 @@ const MultiSelect: React.FC<MultiSelect> = ({
           </MenuItem>
         ))}
       </Select>
-      {error && <S.Error>{error}</S.Error>}
+      {Boolean(error) && <S.Error>{error}</S.Error>}
     </S.FormControl>
   );
 };
