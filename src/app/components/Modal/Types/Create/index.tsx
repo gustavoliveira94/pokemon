@@ -6,6 +6,7 @@ import { validationCreateForm } from 'core/utils/validationForm';
 import { useCreatePokemon } from 'core/hooks/useCreatePokemon';
 import { createPokemonAdapter } from 'core/utils/adapters/createPokemon';
 import { typesOptionsPokemon } from 'core/utils/typesOptionsPokemon';
+import { typesPokemons } from 'core/utils/translates/typesPokemons';
 
 import plus from 'app/assets/images/plus.png';
 
@@ -130,13 +131,16 @@ const CreateModal: React.FC = () => {
             content={
               <S.Types>
                 <MultiSelect
+                  translate={typesPokemons}
                   placeholder="Selecione o(s) tipo(s)"
                   name="types"
                   limitSelected={2}
                   options={typesOptionsPokemon}
                   onChange={(e) => formik.setFieldValue('types', e)}
                   error={
-                    (formik.touched.types && String(formik.errors.types)) || ''
+                    (formik.touched.types &&
+                      String(formik.errors.types || '')) ||
+                    ''
                   }
                 />
               </S.Types>

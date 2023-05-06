@@ -24,7 +24,7 @@ describe('Testing component <Modal.Create /> ', () => {
   });
 
   it('Should show errors', async () => {
-    const { getByRole, getByText, debug } = render(<Modal.Create open />);
+    const { getByRole, getByText } = render(<Modal.Create open />);
 
     const createButton = getByRole('button', {
       name: /criar pokemon/i,
@@ -54,8 +54,6 @@ describe('Testing component <Modal.Create /> ', () => {
         getByText('Velocidade é um campo obrigatório!'),
       ).toBeInTheDocument();
     });
-
-    waitFor(() => debug());
   });
 
   it('Should not show errors', () => {

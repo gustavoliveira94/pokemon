@@ -15,6 +15,6 @@ export const typesPokemons = {
   psychic: 'Psíquico',
   ice: 'Gelo',
   dragon: 'Dragão',
-  dark: 'Noturno',
+  dark: 'Sombrio',
   fairy: 'Fada',
 };
