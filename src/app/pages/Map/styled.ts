@@ -10,6 +10,10 @@ export const MapWrapper = styled.div`
   background-repeat: no-repeat;
   background-size: contain;
   height: 100vh;
+
+  @media (max-width: 450px) {
+    background-size: cover;
+  }
 `;
 
 export const Playground = styled.div`
