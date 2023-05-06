@@ -1,6 +1,6 @@
 import Divide from 'app/components/Modal/common/Divide';
 
-import { IPokemonAdapter } from 'contracts/adapters/pokemon';
+import { IPokemonAdapter } from 'core/utils/adapters/pokemon';
 
 import * as S from './styled';
 

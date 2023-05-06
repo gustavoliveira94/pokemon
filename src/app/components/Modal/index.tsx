@@ -12,13 +12,13 @@ interface ModalProps {
   open: boolean;
 }
 
-const ModalComponent: React.FC<ModalProps> = ({ content, open }) => {
+export const ModalComponent: React.FC<ModalProps> = ({ content, open }) => {
   const { closeModal } = useModal();
 
   return (
     <S.Wrapper open={open} data-testid="modal">
       <S.Container>
-        <S.Close onClick={() => closeModal()}>
+        <S.Close data-testid="close-modal" onClick={() => closeModal()}>
           <img src={close} alt="close-modal" />
         </S.Close>
         <S.Header />

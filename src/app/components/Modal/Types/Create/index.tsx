@@ -4,7 +4,7 @@ import { useFormik, FormikProvider } from 'formik';
 
 import { validationCreateForm } from 'core/utils/validationForm';
 import { useCreatePokemon } from 'core/hooks/useCreatePokemon';
-import { createPokemonAdapter } from 'contracts/adapters/createPokemon';
+import { createPokemonAdapter } from 'core/utils/adapters/createPokemon';
 import { typesOptionsPokemon } from 'core/utils/typesOptionsPokemon';
 
 import plus from 'app/assets/images/plus.png';
@@ -45,19 +45,15 @@ const CreateModal: React.FC = () => {
   const formik = useFormik({
     initialValues,
     validationSchema: validationCreateForm,
-    onSubmit: async (values, { resetForm }) => {
-      try {
-        createPokemon(createPokemonAdapter(values));
+    onSubmit: (values, { resetForm }) => {
+      createPokemon(createPokemonAdapter(values));
 
-        resetForm();
-      } catch (e) {
-        return null;
-      }
+      resetForm();
     },
   });
 
   return (
-    <S.Wrapper>
+    <S.Wrapper data-testid="create-modal">
       <FormikProvider value={formik}>
         <form onSubmit={formik.handleSubmit}>
           <S.Picture>
@@ -70,6 +66,7 @@ const CreateModal: React.FC = () => {
                     <img src={plus} alt="add-picture" />
                   </label>
                   <input
+                    data-testid="image-input"
                     type="file"
                     onChange={(file) =>
                       formik.setFieldValue(
@@ -129,6 +126,7 @@ const CreateModal: React.FC = () => {
             content={
               <S.Types>
                 <MultiSelect
+                  placeholder="Selecione o(s) tipo(s)"
                   name="types"
                   limitSelected={2}
                   options={typesOptionsPokemon}
@@ -145,6 +143,7 @@ const CreateModal: React.FC = () => {
             content={
               <S.Abilities>
                 <InputText
+                  className="abilities"
                   type="select"
                   placeholder="Habilidade 1"
                   name="abilityOne"
@@ -156,6 +155,7 @@ const CreateModal: React.FC = () => {
                   }
                 />
                 <InputText
+                  className="abilities"
                   type="select"
                   placeholder="Habilidade 2"
                   name="abilityTwo"
@@ -167,6 +167,7 @@ const CreateModal: React.FC = () => {
                   }
                 />
                 <InputText
+                  className="abilities"
                   type="select"
                   placeholder="Habilidade 3"
                   name="abilityThree"
@@ -179,6 +180,7 @@ const CreateModal: React.FC = () => {
                   }
                 />
                 <InputText
+                  className="abilities"
                   type="select"
                   placeholder="Habilidade 4"
                   name="abilityFour"

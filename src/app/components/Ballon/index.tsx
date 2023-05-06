@@ -9,7 +9,10 @@ interface BallonComponentProps {
   type: string;
 }
 
-const BallonComponent: React.FC<BallonComponentProps> = ({ tooltip, type }) => {
+export const BallonComponent: React.FC<BallonComponentProps> = ({
+  tooltip,
+  type,
+}) => {
   return (
     <img
       id="ballon"

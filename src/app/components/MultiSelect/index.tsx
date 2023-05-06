@@ -6,13 +6,16 @@ import {
   MenuItem,
   SelectChangeEvent,
   Select,
+  Box,
+  Chip,
 } from '@mui/material';
 
 import * as S from './styled';
 
 interface MultiSelect {
   limitSelected?: number;
-  name: string;
+  placeholder?: string;
+  name?: string;
   options: {
     text: string;
     value: string;
@@ -26,6 +29,7 @@ const MultiSelect: React.FC<MultiSelect> = ({
   onChange,
   limitSelected,
   error,
+  placeholder,
 }) => {
   const [selected, setSelected] = useState<string[]>([]);
 
@@ -37,16 +41,26 @@ const MultiSelect: React.FC<MultiSelect> = ({
   };
 
   return (
-    <S.FormControl style={{ width: '100%' }} error={Boolean(error)}>
+    <S.FormControl error={Boolean(error)} id="control">
+      <S.InputLabel id="demo-multiple-chip-label">{placeholder}</S.InputLabel>
       <Select
+        data-testid="multi-select"
         labelId="mutiple-select-label"
         multiple
         value={selected}
         onChange={handleChange}
-        renderValue={(select) => select.join(', ')}
+        renderValue={(select) => (
+          <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
+            {select.map((value) => (
+              <Chip key={value} label={value} />
+            ))}
+          </Box>
+        )}
+        input={<S.OutlinedInput id="select-multiple-chip" />}
       >
         {options.map((option) => (
           <MenuItem
+            data-testid="option"
             key={option.value}
             value={option.value}
             disabled={

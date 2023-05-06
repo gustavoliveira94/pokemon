@@ -1,6 +1,6 @@
 import Divide from 'app/components/Modal/common/Divide';
 
-import { IPokemonAdapter } from 'contracts/adapters/pokemon';
+import { IPokemonAdapter } from 'core/utils/adapters/pokemon';
 
 import shieldIcon from 'app/assets/images/shield.png';
 import swordIcon from 'app/assets/images/sword.png';
@@ -48,13 +48,13 @@ const FieldStats: React.FC<FieldStatsProps> = ({ statsValue }) => {
         <S.Stats>
           <div className="items">
             {stats.map(({ icon, title, id }) => {
-              const value = statsValue.find((stat) => stat.name === id)?.value;
+              const value = statsValue?.find((stat) => stat.name === id)?.value;
 
               return (
                 <S.Item key={id}>
                   <S.Icon>
                     <div>
-                      <img src={icon} alt={title} onClick={() => ''} />
+                      <img src={icon} alt={title} />
                     </div>
                     <p key={title}>{title}</p>
                   </S.Icon>

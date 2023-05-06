@@ -18,17 +18,22 @@ const CaptureModal: React.FC = () => {
   return (
     <>
       <Picture image={pokemon.image} />
-      <S.Wrapper>
+      <S.Wrapper data-testid="capture-modal">
         <S.Name>{pokemon.name}</S.Name>
         <Infos
           hp={pokemon.hp || '-'}
           height={pokemon.height}
           weight={pokemon.weight}
         />
-        <FieldType types={pokemon.types} />
-        <FieldAbilities abilities={pokemon.abilities} />
+        <FieldType types={pokemon?.types} />
+        <FieldAbilities abilities={pokemon?.abilities} />
         <S.Pokeball>
-          <img src={pokeball} alt="pokeball" onClick={() => capturePokemon()} />
+          <img
+            src={pokeball}
+            data-testid="button-capture"
+            alt="pokeball"
+            onClick={() => capturePokemon()}
+          />
         </S.Pokeball>
       </S.Wrapper>
     </>

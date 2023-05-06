@@ -2,7 +2,7 @@ import Divide from 'app/components/Modal/common/Divide';
 
 import { typesColors } from 'core/utils/typesColorsPokemon';
 
-import { IPokemonAdapter } from 'contracts/adapters/pokemon';
+import { IPokemonAdapter } from 'core/utils/adapters/pokemon';
 
 import * as S from './styled';
 
@@ -15,17 +15,17 @@ const FieldType: React.FC<FieldTypeProps> = ({ types }) => {
     <Divide
       title="TIPO"
       content={
-        <S.Type>
-          {types.map((type) => {
+        <S.Types>
+          {types?.map((type) => {
             const color = typesColors[type as keyof typeof typesColors];
 
             return (
-              <p style={{ backgroundColor: color }} key={type}>
+              <S.Type color={color} key={type}>
                 {type}
-              </p>
+              </S.Type>
             );
           })}
-        </S.Type>
+        </S.Types>
       }
     />
   );
