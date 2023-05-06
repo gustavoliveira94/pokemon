@@ -17,6 +17,7 @@ import MultiSelect from 'app/components/MultiSelect';
 import Divide from 'app/components/Modal/common/Divide';
 import Picture from 'app/components/Modal/common/Picture';
 
+import { useModal } from 'core/hooks/useModal';
 import * as S from './styled';
 
 const initialValues = {
@@ -41,6 +42,7 @@ const initialValues = {
 
 const CreateModal: React.FC = () => {
   const { createPokemon } = useCreatePokemon();
+  const { closeModal } = useModal();
 
   const formik = useFormik({
     initialValues,
@@ -49,6 +51,8 @@ const CreateModal: React.FC = () => {
       createPokemon(createPokemonAdapter(values));
 
       resetForm();
+
+      closeModal();
     },
   });
 
@@ -97,7 +101,7 @@ const CreateModal: React.FC = () => {
               name="hp"
               className="infos"
               value={formik.values.hp}
-              onChange={formik.handleChange}
+              onChange={(e) => formik.setFieldValue('hp', e || '')}
               error={(formik.touched.hp && formik.errors.hp) || ''}
             />
             <InputNumber
@@ -107,7 +111,7 @@ const CreateModal: React.FC = () => {
               className="infos"
               name="weight"
               value={formik.values.weight}
-              onChange={formik.handleChange}
+              onChange={(e) => formik.setFieldValue('weight', e || '')}
               error={(formik.touched.weight && formik.errors.weight) || ''}
             />
             <InputNumber
@@ -117,7 +121,7 @@ const CreateModal: React.FC = () => {
               suffix="Cm"
               className="infos"
               value={formik.values.height}
-              onChange={formik.handleChange}
+              onChange={(e) => formik.setFieldValue('height', e || '')}
               error={(formik.touched.height && formik.errors.height) || ''}
             />
           </S.Infos>
@@ -204,7 +208,9 @@ const CreateModal: React.FC = () => {
                   name="stats.defense"
                   className="stats"
                   value={formik.values.stats.defense}
-                  onChange={formik.handleChange}
+                  onChange={(e) =>
+                    formik.setFieldValue('stats.defense', e || '')
+                  }
                   error={
                     (formik.touched.stats?.defense &&
                       formik.errors.stats?.defense) ||
@@ -217,7 +223,9 @@ const CreateModal: React.FC = () => {
                   name="stats.attack"
                   className="stats"
                   value={formik.values.stats.attack}
-                  onChange={formik.handleChange}
+                  onChange={(e) =>
+                    formik.setFieldValue('stats.attack', e || '')
+                  }
                   error={
                     (formik.touched.stats?.attack &&
                       formik.errors.stats?.attack) ||
@@ -230,7 +238,9 @@ const CreateModal: React.FC = () => {
                   name="stats.special-defense"
                   className="stats"
                   value={formik.values.stats?.['special-defense']}
-                  onChange={formik.handleChange}
+                  onChange={(e) =>
+                    formik.setFieldValue('stats.special-defense', e || '')
+                  }
                   error={
                     (formik.touched.stats?.['special-defense'] &&
                       formik.errors.stats?.['special-defense']) ||
@@ -243,7 +253,9 @@ const CreateModal: React.FC = () => {
                   name="stats.special-attack"
                   className="stats"
                   value={formik.values.stats['special-attack']}
-                  onChange={formik.handleChange}
+                  onChange={(e) =>
+                    formik.setFieldValue('stats.special-attack', e || '')
+                  }
                   error={
                     (formik.touched.stats?.['special-attack'] &&
                       formik.errors.stats?.['special-attack']) ||
@@ -256,7 +268,7 @@ const CreateModal: React.FC = () => {
                   name="stats.speed"
                   className="stats"
                   value={formik.values.stats.speed}
-                  onChange={formik.handleChange}
+                  onChange={(e) => formik.setFieldValue('stats.speed', e || '')}
                   error={
                     (formik.touched.stats?.speed &&
                       formik.errors.stats?.speed) ||

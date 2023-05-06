@@ -16,7 +16,7 @@ const Sidebar: React.FC = () => {
   const { openModal } = useModal();
 
   return (
-    <S.SideBarWrapper>
+    <S.SideBarWrapper data-testid="sidebar">
       <S.SideBarList>
         {pokemons.map((pokemon) => {
           const image = pokemon.image ? (

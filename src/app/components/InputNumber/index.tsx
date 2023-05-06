@@ -12,7 +12,7 @@ interface InputNumberProps {
   suffix?: string;
   value?: string;
   error?: string;
-  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement> | number) => void;
 }
 
 const InputNumber: React.FC<InputNumberProps> = ({
@@ -24,31 +24,58 @@ const InputNumber: React.FC<InputNumberProps> = ({
   value,
   error,
   onChange,
-}) => (
-  <S.InputNumberWrapper className={className}>
-    {label && <S.Label>{label}</S.Label>}
+}) => {
+  const increase = () => {
+    onChange?.(Number(value) + 1);
+  };
 
-    <S.InputContent>
-      <S.Input
-        id={name}
-        value={value}
-        type="number"
-        placeholder={placeholder}
-        name={name}
-        onChange={onChange}
-        error={Boolean(error)}
-      />
+  const decrease = () => {
+    if (Number(value) <= 0) {
+      return null;
+    }
 
-      {suffix && <S.InputSuffix>{suffix}</S.InputSuffix>}
+    onChange?.(Number(value) - 1);
+  };
 
-      <S.InputActions>
-        <S.Arrow src={chevron} className="increase" alt="Mais" />
-        <S.Arrow src={chevron} className="decrease" alt="Menos" />
-      </S.InputActions>
-    </S.InputContent>
+  return (
+    <S.InputNumberWrapper className={className}>
+      {label && <S.Label>{label}</S.Label>}
 
-    {error && <S.Error>{error}</S.Error>}
-  </S.InputNumberWrapper>
-);
+      <S.InputContent>
+        <S.Input
+          data-testid="input-number"
+          id={name}
+          value={value || ''}
+          type="number"
+          placeholder={placeholder}
+          name={name}
+          onChange={(e) => onChange?.(Number(e.target.value))}
+          error={Boolean(error)}
+        />
+
+        {suffix && <S.InputSuffix>{suffix}</S.InputSuffix>}
+
+        <S.InputActions>
+          <S.Arrow
+            src={chevron}
+            className="increase"
+            data-testid="increase"
+            alt="Mais"
+            onClick={() => increase()}
+          />
+          <S.Arrow
+            src={chevron}
+            data-testid="decrease"
+            className="decrease"
+            alt="Menos"
+            onClick={() => decrease()}
+          />
+        </S.InputActions>
+      </S.InputContent>
+
+      {error && <S.Error>{error}</S.Error>}
+    </S.InputNumberWrapper>
+  );
+};
 
 export default InputNumber;

@@ -1,6 +1,7 @@
 import Divide from 'app/components/Modal/common/Divide';
 
 import { typesColors } from 'core/utils/typesColorsPokemon';
+import { typesPokemons } from 'core/utils/translates/typesPokemons';
 
 import { IPokemonAdapter } from 'core/utils/adapters/pokemon';
 
@@ -17,7 +18,12 @@ const FieldType: React.FC<FieldTypeProps> = ({ types }) => {
       content={
         <S.Types>
           {types?.map((type) => {
-            const color = typesColors[type as keyof typeof typesColors];
+            const color =
+              typesColors[
+                typesPokemons[
+                  type as keyof typeof typesPokemons
+                ]?.toLowerCase() as keyof typeof typesColors
+              ];
 
             return (
               <S.Type color={color} key={type}>
