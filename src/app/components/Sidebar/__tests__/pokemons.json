@@ -1,0 +1,233 @@
+[
+    {
+        "id": 0.5365674146930062,
+        "name": "salamence",
+        "height": "15",
+        "weight": "1026",
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/373.png",
+        "hp": "95",
+        "abilities": "intimidate, moxie",
+        "stats": [
+            {
+                "name": "hp",
+                "value": "95"
+            },
+            {
+                "name": "attack",
+                "value": "135"
+            },
+            {
+                "name": "defense",
+                "value": "80"
+            },
+            {
+                "name": "special-attack",
+                "value": "110"
+            },
+            {
+                "name": "special-defense",
+                "value": "80"
+            },
+            {
+                "name": "speed",
+                "value": "100"
+            }
+        ],
+        "types": [
+            "dragon",
+            "flying"
+        ]
+    },
+    {
+        "id": 0.6963687073273024,
+        "name": "dugtrio",
+        "height": "7",
+        "weight": "333",
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/51.png",
+        "hp": "35",
+        "abilities": "sand-veil, arena-trap, sand-force",
+        "stats": [
+            {
+                "name": "hp",
+                "value": "35"
+            },
+            {
+                "name": "attack",
+                "value": "100"
+            },
+            {
+                "name": "defense",
+                "value": "50"
+            },
+            {
+                "name": "special-attack",
+                "value": "50"
+            },
+            {
+                "name": "special-defense",
+                "value": "70"
+            },
+            {
+                "name": "speed",
+                "value": "120"
+            }
+        ],
+        "types": [
+            "ground"
+        ]
+    },
+    {
+        "id": 0.8517565314889874,
+        "name": "swablu",
+        "height": "4",
+        "weight": "12",
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/333.png",
+        "hp": "45",
+        "abilities": "natural-cure, cloud-nine",
+        "stats": [
+            {
+                "name": "hp",
+                "value": "45"
+            },
+            {
+                "name": "attack",
+                "value": "40"
+            },
+            {
+                "name": "defense",
+                "value": "60"
+            },
+            {
+                "name": "special-attack",
+                "value": "40"
+            },
+            {
+                "name": "special-defense",
+                "value": "75"
+            },
+            {
+                "name": "speed",
+                "value": "50"
+            }
+        ],
+        "types": [
+            "normal",
+            "flying"
+        ]
+    },
+    {
+        "id": 0.8913514188039517,
+        "name": "manaphy",
+        "height": "3",
+        "weight": "14",
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/490.png",
+        "hp": "100",
+        "abilities": "hydration",
+        "stats": [
+            {
+                "name": "hp",
+                "value": "100"
+            },
+            {
+                "name": "attack",
+                "value": "100"
+            },
+            {
+                "name": "defense",
+                "value": "100"
+            },
+            {
+                "name": "special-attack",
+                "value": "100"
+            },
+            {
+                "name": "special-defense",
+                "value": "100"
+            },
+            {
+                "name": "speed",
+                "value": "100"
+            }
+        ],
+        "types": [
+            "water"
+        ]
+    },
+    {
+        "id": 0.19414089217779695,
+        "name": "meloetta-aria",
+        "height": "6",
+        "weight": "65",
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/648.png",
+        "hp": "100",
+        "abilities": "serene-grace",
+        "stats": [
+            {
+                "name": "hp",
+                "value": "100"
+            },
+            {
+                "name": "attack",
+                "value": "77"
+            },
+            {
+                "name": "defense",
+                "value": "77"
+            },
+            {
+                "name": "special-attack",
+                "value": "128"
+            },
+            {
+                "name": "special-defense",
+                "value": "128"
+            },
+            {
+                "name": "speed",
+                "value": "90"
+            }
+        ],
+        "types": [
+            "normal",
+            "psychic"
+        ]
+    },
+    {
+        "id": 0.1756236743981614,
+        "name": "rapidash",
+        "height": "17",
+        "weight": "950",
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/78.png",
+        "hp": "65",
+        "abilities": "run-away, flash-fire, flame-body",
+        "stats": [
+            {
+                "name": "hp",
+                "value": "65"
+            },
+            {
+                "name": "attack",
+                "value": "100"
+            },
+            {
+                "name": "defense",
+                "value": "70"
+            },
+            {
+                "name": "special-attack",
+                "value": "80"
+            },
+            {
+                "name": "special-defense",
+                "value": "80"
+            },
+            {
+                "name": "speed",
+                "value": "105"
+            }
+        ],
+        "types": [
+            "fire"
+        ]
+    }
+]

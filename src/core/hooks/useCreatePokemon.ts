@@ -1,7 +1,7 @@
 import { useDispatch } from 'react-redux';
 
 import { createPokemon as create } from 'core/store/slices/pokemons';
-import { IPokemonAdapter } from 'contracts/adapters/pokemon';
+import { IPokemonAdapter } from 'core/utils/adapters/pokemon';
 
 export const useCreatePokemon = () => {
   const dispatch = useDispatch();

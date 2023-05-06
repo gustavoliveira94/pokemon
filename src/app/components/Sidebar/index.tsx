@@ -16,7 +16,7 @@ const Sidebar: React.FC = () => {
   const { openModal } = useModal();
 
   return (
-    <S.SideBarWrapper>
+    <S.SideBarWrapper data-testid="sidebar">
       <S.SideBarList>
         {pokemons.map((pokemon) => {
           const image = pokemon.image ? (
@@ -33,7 +33,11 @@ const Sidebar: React.FC = () => {
             : undefined;
 
           return (
-            <S.SideBarItem onClick={click} key={Math.random()}>
+            <S.SideBarItem
+              data-testid="sidebar-item"
+              onClick={click}
+              key={Math.random()}
+            >
               {image}
             </S.SideBarItem>
           );

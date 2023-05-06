@@ -10,8 +10,16 @@ interface PictureProps {
 
 const Picture: React.FC<PictureProps> = ({ image, content, error }) => {
   return (
-    <S.Wrapper bgImage={image ? undefined : camera} error={error}>
-      {!image ? content : <img src={image} alt="pokemon" />}
+    <S.Wrapper
+      bgImage={image ? undefined : camera}
+      error={error}
+      data-testid="picture"
+    >
+      {image ? (
+        <img src={image} alt="pokemon" data-testid="picture-image" />
+      ) : (
+        content
+      )}
     </S.Wrapper>
   );
 };

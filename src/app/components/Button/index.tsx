@@ -8,15 +8,26 @@ interface ButtonProps {
   icon?: string;
   onClick?: () => void;
   onlyIcon?: boolean;
+  disabled?: boolean;
 }
 
-const Button: React.FC<ButtonProps> = ({ text, icon, onClick, type }) => (
+const Button: React.FC<ButtonProps> = ({
+  text,
+  icon,
+  onClick,
+  type,
+  onlyIcon,
+  disabled,
+}) => (
   <S.ButtonWrapper
     type={type}
     className={`${icon ? 'icon' : ''}`}
     onClick={onClick}
+    data-testid="button"
+    disabled={disabled}
   >
-    {icon ? <S.Icon src={icon} /> : <S.Text>{text}</S.Text>}
+    {!onlyIcon ? <S.Text>{text}</S.Text> : null}
+    {icon ? <S.Icon data-testid="icon" src={icon} /> : null}
   </S.ButtonWrapper>
 );
 

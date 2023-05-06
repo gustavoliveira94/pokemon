@@ -7,6 +7,9 @@ export const validationCreateForm = yup.object({
   image: yup.string().required('Imagem é um campo obrigatório!'),
   hp: yup.string().required('HP é um campo obrigatório!'),
   abilityOne: yup.string().required('Habilidade 1 é um campo obrigatório!'),
+  abilityTwo: yup.string().required('Habilidade 2 é um campo obrigatório!'),
+  abilityThree: yup.string().required('Habilidade 3 é um campo obrigatório!'),
+  abilityFour: yup.string().required('Habilidade 4 é um campo obrigatório!'),
   stats: yup.object({
     defense: yup.string().required('Defesa é um campo obrigatório!'),
     attack: yup.string().required('Ataque é um campo obrigatório!'),

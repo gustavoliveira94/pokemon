@@ -31,9 +31,9 @@ const StatusModal: React.FC = () => {
   return (
     <>
       <Picture image={pokemon.image} />
-      <S.Wrapper>
+      <S.Wrapper data-testid="status-modal">
         {edit ? (
-          <S.EditName>
+          <S.EditName data-testid="edit-name">
             <InputText
               type="text"
               placeholder="Nome"
@@ -49,7 +49,14 @@ const StatusModal: React.FC = () => {
                 setEdit(false);
               }}
             />
-            <Button onlyIcon icon={closeIcon} onClick={() => setEdit(false)} />
+            <Button
+              onlyIcon
+              icon={closeIcon}
+              onClick={() => {
+                setName('');
+                setEdit(false);
+              }}
+            />
           </S.EditName>
         ) : (
           <S.Name>
@@ -57,6 +64,7 @@ const StatusModal: React.FC = () => {
             <img
               src={editName}
               alt="edit-name-icon"
+              data-testid="button-edit-name"
               onClick={() => setEdit(true)}
             />
           </S.Name>

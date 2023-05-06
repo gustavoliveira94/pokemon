@@ -8,7 +8,7 @@ import {
 } from 'core/store/slices/pokemons';
 
 import { openModal } from 'core/store/slices/modal';
-import { pokemonAdapter } from 'contracts/adapters/pokemon';
+import { pokemonAdapter } from 'core/utils/adapters/pokemon';
 
 import httpClient from 'core/services/httpClient';
 import { IPokemon } from 'contracts/interfaces/pokemon';

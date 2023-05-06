@@ -4,7 +4,7 @@ import { useFormik, FormikProvider } from 'formik';
 
 import { validationCreateForm } from 'core/utils/validationForm';
 import { useCreatePokemon } from 'core/hooks/useCreatePokemon';
-import { createPokemonAdapter } from 'contracts/adapters/createPokemon';
+import { createPokemonAdapter } from 'core/utils/adapters/createPokemon';
 import { typesOptionsPokemon } from 'core/utils/typesOptionsPokemon';
 
 import plus from 'app/assets/images/plus.png';
@@ -17,6 +17,7 @@ import MultiSelect from 'app/components/MultiSelect';
 import Divide from 'app/components/Modal/common/Divide';
 import Picture from 'app/components/Modal/common/Picture';
 
+import { useModal } from 'core/hooks/useModal';
 import * as S from './styled';
 
 const initialValues = {
@@ -41,23 +42,22 @@ const initialValues = {
 
 const CreateModal: React.FC = () => {
   const { createPokemon } = useCreatePokemon();
+  const { closeModal } = useModal();
 
   const formik = useFormik({
     initialValues,
     validationSchema: validationCreateForm,
-    onSubmit: async (values, { resetForm }) => {
-      try {
-        createPokemon(createPokemonAdapter(values));
+    onSubmit: (values, { resetForm }) => {
+      createPokemon(createPokemonAdapter(values));
 
-        resetForm();
-      } catch (e) {
-        return null;
-      }
+      resetForm();
+
+      closeModal();
     },
   });
 
   return (
-    <S.Wrapper>
+    <S.Wrapper data-testid="create-modal">
       <FormikProvider value={formik}>
         <form onSubmit={formik.handleSubmit}>
           <S.Picture>
@@ -70,6 +70,7 @@ const CreateModal: React.FC = () => {
                     <img src={plus} alt="add-picture" />
                   </label>
                   <input
+                    data-testid="image-input"
                     type="file"
                     onChange={(file) =>
                       formik.setFieldValue(
@@ -100,7 +101,7 @@ const CreateModal: React.FC = () => {
               name="hp"
               className="infos"
               value={formik.values.hp}
-              onChange={formik.handleChange}
+              onChange={(e) => formik.setFieldValue('hp', e || '')}
               error={(formik.touched.hp && formik.errors.hp) || ''}
             />
             <InputNumber
@@ -110,7 +111,7 @@ const CreateModal: React.FC = () => {
               className="infos"
               name="weight"
               value={formik.values.weight}
-              onChange={formik.handleChange}
+              onChange={(e) => formik.setFieldValue('weight', e || '')}
               error={(formik.touched.weight && formik.errors.weight) || ''}
             />
             <InputNumber
@@ -120,7 +121,7 @@ const CreateModal: React.FC = () => {
               suffix="Cm"
               className="infos"
               value={formik.values.height}
-              onChange={formik.handleChange}
+              onChange={(e) => formik.setFieldValue('height', e || '')}
               error={(formik.touched.height && formik.errors.height) || ''}
             />
           </S.Infos>
@@ -129,6 +130,7 @@ const CreateModal: React.FC = () => {
             content={
               <S.Types>
                 <MultiSelect
+                  placeholder="Selecione o(s) tipo(s)"
                   name="types"
                   limitSelected={2}
                   options={typesOptionsPokemon}
@@ -145,6 +147,7 @@ const CreateModal: React.FC = () => {
             content={
               <S.Abilities>
                 <InputText
+                  className="abilities"
                   type="select"
                   placeholder="Habilidade 1"
                   name="abilityOne"
@@ -156,6 +159,7 @@ const CreateModal: React.FC = () => {
                   }
                 />
                 <InputText
+                  className="abilities"
                   type="select"
                   placeholder="Habilidade 2"
                   name="abilityTwo"
@@ -167,6 +171,7 @@ const CreateModal: React.FC = () => {
                   }
                 />
                 <InputText
+                  className="abilities"
                   type="select"
                   placeholder="Habilidade 3"
                   name="abilityThree"
@@ -179,6 +184,7 @@ const CreateModal: React.FC = () => {
                   }
                 />
                 <InputText
+                  className="abilities"
                   type="select"
                   placeholder="Habilidade 4"
                   name="abilityFour"
@@ -202,7 +208,9 @@ const CreateModal: React.FC = () => {
                   name="stats.defense"
                   className="stats"
                   value={formik.values.stats.defense}
-                  onChange={formik.handleChange}
+                  onChange={(e) =>
+                    formik.setFieldValue('stats.defense', e || '')
+                  }
                   error={
                     (formik.touched.stats?.defense &&
                       formik.errors.stats?.defense) ||
@@ -215,7 +223,9 @@ const CreateModal: React.FC = () => {
                   name="stats.attack"
                   className="stats"
                   value={formik.values.stats.attack}
-                  onChange={formik.handleChange}
+                  onChange={(e) =>
+                    formik.setFieldValue('stats.attack', e || '')
+                  }
                   error={
                     (formik.touched.stats?.attack &&
                       formik.errors.stats?.attack) ||
@@ -228,7 +238,9 @@ const CreateModal: React.FC = () => {
                   name="stats.special-defense"
                   className="stats"
                   value={formik.values.stats?.['special-defense']}
-                  onChange={formik.handleChange}
+                  onChange={(e) =>
+                    formik.setFieldValue('stats.special-defense', e || '')
+                  }
                   error={
                     (formik.touched.stats?.['special-defense'] &&
                       formik.errors.stats?.['special-defense']) ||
@@ -241,7 +253,9 @@ const CreateModal: React.FC = () => {
                   name="stats.special-attack"
                   className="stats"
                   value={formik.values.stats['special-attack']}
-                  onChange={formik.handleChange}
+                  onChange={(e) =>
+                    formik.setFieldValue('stats.special-attack', e || '')
+                  }
                   error={
                     (formik.touched.stats?.['special-attack'] &&
                       formik.errors.stats?.['special-attack']) ||
@@ -254,7 +268,7 @@ const CreateModal: React.FC = () => {
                   name="stats.speed"
                   className="stats"
                   value={formik.values.stats.speed}
-                  onChange={formik.handleChange}
+                  onChange={(e) => formik.setFieldValue('stats.speed', e || '')}
                   error={
                     (formik.touched.stats?.speed &&
                       formik.errors.stats?.speed) ||

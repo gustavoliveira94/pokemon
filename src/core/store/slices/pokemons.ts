@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-import { IPokemonAdapter } from 'contracts/adapters/pokemon';
+import { IPokemonAdapter } from 'core/utils/adapters/pokemon';
 import { RootState } from '..';
 
 export interface PokemonsState {
@@ -79,25 +79,22 @@ const pokemonsSlice = createSlice({
       state,
       action: PayloadAction<{ id: number; name: string }>,
     ) => {
-      const mergePokemons = state.pokemons.map((pokemon) => {
-        if (pokemon.id === action.payload.id) {
-          return {
-            ...pokemon,
-            name: action.payload.name,
-          };
-        }
-
-        return pokemon;
+      const indexPokemon = state.pokemons.findIndex((pokemon) => {
+        return pokemon.id === action.payload.id;
       });
 
-      const selectPokemon = state.pokemons.filter(
-        (pokemon) => pokemon.id === action.payload.id,
-      );
+      const pokemon = {
+        ...state.pokemons[indexPokemon],
+        name: action.payload.name,
+      };
+
+      const pokemons = [...state.pokemons];
+      pokemons.splice(indexPokemon, 1, pokemon);
 
       return {
         ...state,
-        pokemons: mergePokemons,
-        pokemon: selectPokemon[0],
+        pokemon,
+        pokemons,
       };
     },
     createPokemon: (state, action: PayloadAction<IPokemonAdapter>) => {

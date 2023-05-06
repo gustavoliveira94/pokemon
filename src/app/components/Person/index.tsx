@@ -44,14 +44,18 @@ const PersonComponent: React.FC<PersonProps> = ({ ballon }) => {
   };
 
   const personMove = {
-    front: <img src={personFront} alt="person" />,
+    front: <img src={personFront} alt="person" data-testid="front-person" />,
     left: <img src={personLeftLeg} alt="person" />,
     right: <img src={personRighttLeg} alt="person" />,
     stop: <img src={personStop} alt="person" />,
   };
 
   return (
-    <S.Person loading={loading} onClick={() => handleSearchPokemon()}>
+    <S.Person
+      loading={loading}
+      onClick={() => handleSearchPokemon()}
+      data-testid="person"
+    >
       {ballon}
       {personMove[walk]}
     </S.Person>
