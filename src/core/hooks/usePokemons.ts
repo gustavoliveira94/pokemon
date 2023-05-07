@@ -5,6 +5,7 @@ import {
   setPokemon,
   setLoading,
   selectPokemon as pokemonSelect,
+  pokemonsSelector,
 } from 'core/store/slices/pokemons';
 
 import { openModal } from 'core/store/slices/modal';
@@ -13,9 +14,10 @@ import { pokemonAdapter } from 'core/utils/adapters/pokemon';
 import httpClient from 'core/services/httpClient';
 import { IPokemon } from 'contracts/interfaces/pokemon';
 
-export const useSearchPokemon = () => {
+export const usePokemons = () => {
   const dispatch = useDispatch();
   const { pokemon, loading } = useSelector(pokemonSelector);
+  const { pokemons } = useSelector(pokemonsSelector);
 
   const selectPokemon = ({ id }: { id: number }) => {
     dispatch(pokemonSelect({ id }));
@@ -44,6 +46,7 @@ export const useSearchPokemon = () => {
     searchPokemon,
     loading,
     pokemon,
+    pokemons,
     selectPokemon,
   };
 };

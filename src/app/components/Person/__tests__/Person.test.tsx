@@ -1,31 +1,33 @@
 import { waitFor, fireEvent } from '@testing-library/react';
 import { render } from 'config/tests/helper';
 
-import { Person } from 'app/components/Person';
+import { Person, PersonComponent } from 'app/components/Person';
 
 import pokemonsData from './pokemons.json';
 
+let pokemons = pokemonsData;
 let loading = false;
 const searchPokemon = jest.fn();
 
-jest.mock('core/hooks/useSearchPokemon', () => ({
-  useSearchPokemon: () => ({
+jest.mock('core/hooks/usePokemons', () => ({
+  usePokemons: () => ({
     loading,
     searchPokemon,
-  }),
-}));
-
-let pokemons = pokemonsData;
-
-jest.mock('core/hooks/useSearchPokemons', () => ({
-  useSearchPokemons: () => ({
     pokemons,
   }),
 }));
 
+// jest.mock('core/hooks/usePersonStatus', () => ({
+//   usePersonStatus: () => ({
+//     loading,
+//     searchPokemon,
+//     pokemons,
+//   }),
+// }));
+
 describe('Testing component <Person /> ', () => {
   it('Should not call searchPokemon', () => {
-    const { getByTestId } = render(<Person.Search />);
+    const { getByTestId } = render(<PersonComponent ballon={<p>Ballon</p>} />);
 
     const person = getByTestId('person');
 

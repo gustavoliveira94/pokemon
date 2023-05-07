@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import { useSearchPokemon } from 'core/hooks/useSearchPokemon';
+import { usePokemons } from 'core/hooks/usePokemons';
 import { useDropPokemon } from 'core/hooks/useDropPokemon';
 import { useEditPokemon } from 'core/hooks/useEditPokemon';
 
@@ -21,7 +21,7 @@ import Picture from '../../common/Picture';
 import * as S from './styled';
 
 const StatusModal: React.FC = () => {
-  const { pokemon } = useSearchPokemon();
+  const { pokemon } = usePokemons();
   const { dropPokemon } = useDropPokemon();
   const { editPokemon } = useEditPokemon();
 

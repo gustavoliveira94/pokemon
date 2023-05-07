@@ -1,6 +1,6 @@
 import pokeball from 'app/assets/images/pokeball.png';
 
-import { useSearchPokemon } from 'core/hooks/useSearchPokemon';
+import { usePokemons } from 'core/hooks/usePokemons';
 import { useCapturePokemon } from 'core/hooks/useCapturePokemon';
 
 import FieldType from '../../common/FieldType';
@@ -12,7 +12,7 @@ import Picture from '../../common/Picture';
 import * as S from './styled';
 
 const CaptureModal: React.FC = () => {
-  const { pokemon } = useSearchPokemon();
+  const { pokemon } = usePokemons();
   const { capturePokemon } = useCapturePokemon();
 
   return (

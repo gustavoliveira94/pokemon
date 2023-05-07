@@ -31,7 +31,7 @@ describe('Testing component <Modal.Create /> ', () => {
     });
     fireEvent.click(createButton);
 
-    waitFor(() => {
+    await waitFor(() => {
       expect(getByText('Nome é um campo obrigatório!')).toBeInTheDocument();
       expect(getByText('HP é um campo obrigatório!')).toBeInTheDocument();
       expect(
@@ -88,7 +88,7 @@ describe('Testing component <Modal.Create /> ', () => {
     ).not.toBeInTheDocument();
   });
 
-  it('Should fill form and submit without errors', () => {
+  it('Should fill form and submit without errors', async () => {
     const {
       getByPlaceholderText,
       getAllByPlaceholderText,
@@ -97,11 +97,14 @@ describe('Testing component <Modal.Create /> ', () => {
       queryByText,
     } = render(<Modal.Create open />);
 
-    global.URL.createObjectURL = jest.fn();
+    const file = new File(['image'], 'image.png', {
+      type: 'image',
+    });
 
-    const file = new File(['pikachu.png'], { type: 'image/png' } as any);
+    global.URL.createObjectURL = jest.fn().mockReturnValue('image.png');
+
     fireEvent.change(getByTestId(/image-input/i), {
-      target: { files: file },
+      target: { files: [file] },
     });
     fireEvent.change(getByPlaceholderText(/nome/i), {
       target: { value: 'pokemon' },
@@ -115,18 +118,18 @@ describe('Testing component <Modal.Create /> ', () => {
     fireEvent.change(getByPlaceholderText(/Altura/i), {
       target: { value: '30' },
     });
-    fireEvent.change(getByPlaceholderText(/Altura/i), {
-      target: { value: '30' },
-    });
 
     fireEvent.mouseDown(document.querySelector('.MuiSelect-select')!);
 
     act(() => {
-      const option = getAllByTestId('option')[1];
+      const option = getAllByTestId('option')[2];
       fireEvent.mouseDown(option);
       option.click();
     });
 
+    fireEvent.change(getByPlaceholderText(/Habilidade 1/i), {
+      target: { value: 'Habilidade 1' },
+    });
     fireEvent.change(getByPlaceholderText(/Habilidade 2/i), {
       target: { value: 'Habilidade 2' },
     });
@@ -139,49 +142,53 @@ describe('Testing component <Modal.Create /> ', () => {
     fireEvent.change(getAllByPlaceholderText(/00/i)[0], {
       target: { value: '20' },
     });
-    fireEvent.change(getAllByPlaceholderText(/00/i)[0], {
+    fireEvent.change(getAllByPlaceholderText(/00/i)[1], {
       target: { value: '10' },
     });
-    fireEvent.change(getAllByPlaceholderText(/00/i)[0], {
+    fireEvent.change(getAllByPlaceholderText(/00/i)[2], {
       target: { value: '50' },
     });
-    fireEvent.change(getAllByPlaceholderText(/00/i)[0], {
+    fireEvent.change(getAllByPlaceholderText(/00/i)[3], {
       target: { value: '100' },
     });
-    fireEvent.change(getAllByPlaceholderText(/00/i)[0], {
+    fireEvent.change(getAllByPlaceholderText(/00/i)[4], {
       target: { value: '120' },
     });
 
     fireEvent.click(getByTestId('button'));
 
-    // expect(createPokemon).toBeCalledTimes(1);
-
-    expect(queryByText('Nome é um campo obrigatório!')).not.toBeInTheDocument();
-    expect(queryByText('HP é um campo obrigatório!')).not.toBeInTheDocument();
-    expect(
-      queryByText('Peso de série é um campo obrigatório!'),
-    ).not.toBeInTheDocument();
-    expect(
-      queryByText('Altura é um campo obrigatório!'),
-    ).not.toBeInTheDocument();
-    expect(queryByText('Tipo é um campo obrigatório!')).not.toBeInTheDocument();
-    expect(
-      queryByText('Habilidade 1 é um campo obrigatório!'),
-    ).not.toBeInTheDocument();
-    expect(
-      queryByText('Defesa é um campo obrigatório!'),
-    ).not.toBeInTheDocument();
-    expect(
-      queryByText('Ataque é um campo obrigatório!'),
-    ).not.toBeInTheDocument();
-    expect(
-      queryByText('Defesa Especial é um campo obrigatório!'),
-    ).not.toBeInTheDocument();
-    expect(
-      queryByText('Ataque Especial é um campo obrigatório!'),
-    ).not.toBeInTheDocument();
-    expect(
-      queryByText('Velocidade é um campo obrigatório!'),
-    ).not.toBeInTheDocument();
+    await waitFor(() => {
+      expect(
+        queryByText('Nome é um campo obrigatório!'),
+      ).not.toBeInTheDocument();
+      expect(queryByText('HP é um campo obrigatório!')).not.toBeInTheDocument();
+      expect(
+        queryByText('Peso de série é um campo obrigatório!'),
+      ).not.toBeInTheDocument();
+      expect(
+        queryByText('Altura é um campo obrigatório!'),
+      ).not.toBeInTheDocument();
+      expect(
+        queryByText('Tipo é um campo obrigatório!'),
+      ).not.toBeInTheDocument();
+      expect(
+        queryByText('Habilidade 1 é um campo obrigatório!'),
+      ).not.toBeInTheDocument();
+      expect(
+        queryByText('Defesa é um campo obrigatório!'),
+      ).not.toBeInTheDocument();
+      expect(
+        queryByText('Ataque é um campo obrigatório!'),
+      ).not.toBeInTheDocument();
+      expect(
+        queryByText('Defesa Especial é um campo obrigatório!'),
+      ).not.toBeInTheDocument();
+      expect(
+        queryByText('Ataque Especial é um campo obrigatório!'),
+      ).not.toBeInTheDocument();
+      expect(
+        queryByText('Velocidade é um campo obrigatório!'),
+      ).not.toBeInTheDocument();
+    });
   });
 });
