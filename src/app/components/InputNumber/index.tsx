@@ -12,7 +12,7 @@ interface InputNumberProps {
   suffix?: string;
   value?: string;
   error?: string;
-  onChange?: (e: React.ChangeEvent<HTMLInputElement> | number) => void;
+  onChange: (e: React.ChangeEvent<HTMLInputElement> | number) => void;
 }
 
 const InputNumber: React.FC<InputNumberProps> = ({

@@ -13,18 +13,12 @@ jest.mock('core/hooks/useModal', () => ({
   }),
 }));
 
+let pokemons = pokemonsData;
 let selectPokemon = jest.fn();
 
-jest.mock('core/hooks/useSearchPokemon', () => ({
-  useSearchPokemon: () => ({
+jest.mock('core/hooks/usePokemons', () => ({
+  usePokemons: () => ({
     selectPokemon,
-  }),
-}));
-
-let pokemons = pokemonsData;
-
-jest.mock('core/hooks/useSearchPokemons', () => ({
-  useSearchPokemons: () => ({
     pokemons,
   }),
 }));

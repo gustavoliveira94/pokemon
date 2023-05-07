@@ -6,12 +6,16 @@ import MultiSelect from 'app/components/MultiSelect';
 
 describe('Testing component <MultiSelect /> ', () => {
   it('Should open and click on value', () => {
-    const { getByText, getByRole, getByTestId } = render(
+    const { getByText, getByRole, getAllByTestId } = render(
       <MultiSelect
         options={[
           {
             text: 'fogo',
             value: 'fogo',
+          },
+          {
+            text: 'água',
+            value: 'água',
           },
         ]}
       />,
@@ -20,11 +24,11 @@ describe('Testing component <MultiSelect /> ', () => {
     fireEvent.mouseDown(getByRole('button'));
 
     act(() => {
-      const option = getByTestId('option');
+      const option = getAllByTestId('option')[1];
       fireEvent.mouseDown(option);
       option.click();
     });
 
-    expect(getByText('fogo')).toBeInTheDocument();
+    expect(getByText('água')).toBeInTheDocument();
   });
 });

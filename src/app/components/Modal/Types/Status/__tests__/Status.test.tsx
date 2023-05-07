@@ -12,8 +12,8 @@ jest.mock('core/hooks/useDropPokemon', () => ({
   }),
 }));
 
-jest.mock('core/hooks/useSearchPokemon', () => ({
-  useSearchPokemon: () => ({
+jest.mock('core/hooks/usePokemons', () => ({
+  usePokemons: () => ({
     pokemon: pokemons[0],
   }),
 }));

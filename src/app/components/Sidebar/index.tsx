@@ -1,8 +1,7 @@
 import React from 'react';
 
 import Button from 'app/components/Button';
-import { useSearchPokemons } from 'core/hooks/useSearchPokemons';
-import { useSearchPokemon } from 'core/hooks/useSearchPokemon';
+import { usePokemons } from 'core/hooks/usePokemons';
 
 import iconPlus from 'app/assets/images/plus.png';
 
@@ -11,8 +10,7 @@ import { useModal } from 'core/hooks/useModal';
 import * as S from './styled';
 
 const Sidebar: React.FC = () => {
-  const { pokemons } = useSearchPokemons();
-  const { selectPokemon } = useSearchPokemon();
+  const { pokemons, selectPokemon } = usePokemons();
   const { openModal } = useModal();
 
   return (
