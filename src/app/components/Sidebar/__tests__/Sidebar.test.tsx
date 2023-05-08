@@ -56,8 +56,21 @@ describe('Testing component <Sidebar /> ', () => {
     expect(selectPokemon).toBeCalledTimes(1);
   });
 
+  it('Should not call openModal', () => {
+    openModal = jest.fn();
+
+    const { getByRole } = render(<Sidebar />);
+
+    const addButton = getByRole('button');
+
+    fireEvent.click(addButton);
+
+    expect(openModal).toBeCalledTimes(0);
+  });
+
   it('Should call openModal', () => {
     openModal = jest.fn();
+    pokemons = [];
 
     const { getByRole } = render(<Sidebar />);
 
