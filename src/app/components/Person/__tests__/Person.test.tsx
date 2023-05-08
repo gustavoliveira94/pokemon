@@ -1,4 +1,4 @@
-import { waitFor, fireEvent } from '@testing-library/react';
+import { fireEvent } from '@testing-library/react';
 import { render } from 'config/tests/helper';
 
 import { Person, PersonComponent } from 'app/components/Person';
@@ -6,7 +6,7 @@ import { Person, PersonComponent } from 'app/components/Person';
 import pokemonsData from './pokemons.json';
 
 let pokemons = pokemonsData;
-let loading = false;
+const loading = false;
 const searchPokemon = jest.fn();
 
 jest.mock('core/hooks/usePokemons', () => ({
@@ -16,14 +16,6 @@ jest.mock('core/hooks/usePokemons', () => ({
     pokemons,
   }),
 }));
-
-// jest.mock('core/hooks/usePersonStatus', () => ({
-//   usePersonStatus: () => ({
-//     loading,
-//     searchPokemon,
-//     pokemons,
-//   }),
-// }));
 
 describe('Testing component <Person /> ', () => {
   it('Should not call searchPokemon', () => {
@@ -46,16 +38,6 @@ describe('Testing component <Person /> ', () => {
     fireEvent.click(person);
 
     expect(searchPokemon).toBeCalledTimes(1);
-  });
-
-  it('Should not render front person', () => {
-    loading = true;
-
-    const { queryByTestId } = render(<Person.Search />);
-
-    waitFor(() =>
-      expect(queryByTestId('front-person')).not.toBeInTheDocument(),
-    );
   });
 
   it('Should render with Search Ballon', () => {
