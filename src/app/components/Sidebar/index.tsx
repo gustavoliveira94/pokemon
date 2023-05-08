@@ -13,12 +13,26 @@ const Sidebar: React.FC = () => {
   const { pokemons, selectPokemon } = usePokemons();
   const { openModal } = useModal();
 
+  const openCreateModal = () => {
+    const shouldNotCreate = pokemons.filter((pokemon) => pokemon).length >= 6;
+
+    if (shouldNotCreate) {
+      return null;
+    }
+
+    return openModal('Create');
+  };
+
   return (
     <S.SideBarWrapper data-testid="sidebar">
       <S.SideBarList>
         {pokemons.map((pokemon) => {
           const image = pokemon.image ? (
-            <img src={pokemon.image} alt="pokemon" />
+            <img
+              src={pokemon.image}
+              alt="pokemon"
+              data-testid="pokemon-image"
+            />
           ) : (
             '?'
           );
@@ -42,7 +56,7 @@ const Sidebar: React.FC = () => {
         })}
       </S.SideBarList>
 
-      <Button onClick={() => openModal('Create')} icon={iconPlus} />
+      <Button onClick={() => openCreateModal()} icon={iconPlus} />
     </S.SideBarWrapper>
   );
 };
