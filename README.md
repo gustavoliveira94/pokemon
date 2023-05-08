@@ -2,7 +2,7 @@
 
 ## Descrição
 
-App de capturar pokemon usando a API do pokemon: [Pokemon Api]([https://reactjs.org/](https://pokeapi.co/)) \n
+App de capturar pokemon usando a API do pokemon: [Pokemon Api]([https://reactjs.org/](https://pokeapi.co/)) <br />
 Accesse através do link: [Projeto](https://pokemon-beta-teal.vercel.app/)
 
 ## Instalação
