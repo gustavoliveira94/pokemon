@@ -152,7 +152,6 @@ const CreateModal: React.FC = () => {
               <S.Abilities>
                 <InputText
                   className="abilities"
-                  type="select"
                   placeholder="Habilidade 1"
                   name="abilityOne"
                   value={formik.values.abilityOne}
@@ -164,7 +163,6 @@ const CreateModal: React.FC = () => {
                 />
                 <InputText
                   className="abilities"
-                  type="select"
                   placeholder="Habilidade 2"
                   name="abilityTwo"
                   value={formik.values.abilityTwo}
@@ -176,7 +174,6 @@ const CreateModal: React.FC = () => {
                 />
                 <InputText
                   className="abilities"
-                  type="select"
                   placeholder="Habilidade 3"
                   name="abilityThree"
                   value={formik.values.abilityThree}
@@ -189,7 +186,6 @@ const CreateModal: React.FC = () => {
                 />
                 <InputText
                   className="abilities"
-                  type="select"
                   placeholder="Habilidade 4"
                   name="abilityFour"
                   value={formik.values.abilityFour}
