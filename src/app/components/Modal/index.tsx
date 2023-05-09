@@ -1,11 +1,14 @@
+import { lazy } from 'react';
+
 import close from 'app/assets/images/close.png';
 
 import { useModal } from 'core/hooks/useModal';
-import CaptureModal from './Types/Capture';
-import StatusModal from './Types/Status';
-import CreateModal from './Types/Create';
 
 import * as S from './styled';
+
+const CaptureModal = lazy(() => import('./Types/Capture'));
+const StatusModal = lazy(() => import('./Types/Status'));
+const CreateModal = lazy(() => import('./Types/Create'));
 
 interface ModalProps {
   content: JSX.Element;
